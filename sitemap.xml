@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+
+         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>      <loc>http://www.joseiborra.com</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>yearly</changefreq>
+
+      <priority>1.000</priority>
+
+   </url>
+   <url>     <loc>http://www.joseiborra.com/about.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>yearly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/contacto.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>yearly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/bodas.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/books.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/maternidad.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/familiar.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/comuniones.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/comerciales.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/vintage.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/galeria-bodas.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/galeria-books.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/galeria-maternidad.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/galeria-familiar.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/galeria-comuniones.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/galeria-comerciales.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   <url>      <loc>http://www.joseiborra.com/vintage.php</loc>
+
+      <lastmod>2014-08-10</lastmod>
+
+      <changefreq>monthly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   
+  
+
+   
+</urlset> 

@@ -1,0 +1,33 @@
+@charset "utf-8";
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight:bold;
+	margin: 0px;
+	background-image: url(../images/password-background.jpg);
+	background-size: cover;
+	background-repeat:no-repeat;
+}
+table {
+	background-color: transparent;
+	border: 1px dotted #D8D8D8;
+}
+.titulo {
+	padding: 5px;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: #EB6E02;
+	color: #FFFFFF;
+}
+
+a {
+	/*estilo para los vinculos del contenido*/
+    color:#db331c;
+	text-decoration:none;
+}
+a:hover {
+	/*estilo para los vinculos del contenido*/
+   text-decoration:none;
+   color:#db331c;
+   text-decoration:underline;
+}

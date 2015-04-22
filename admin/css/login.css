@@ -1,0 +1,311 @@
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background: url(../images/cine-background.jpg);
+	background-size:cover;
+	background-repeat: no-repeat;
+	 background-position: center; 
+}
+
+body {
+	
+	min-width: 0;
+	color: #444;
+	font-family: "Open Sans", sans-serif;
+	font-size: 13px;
+	line-height: 1.4em;
+}
+
+a {
+	color: #0074a2;
+	-webkit-transition-property: border, background, color;
+	transition-property: border, background, color;
+	-webkit-transition-duration: .05s;
+	transition-duration: .05s;
+	-webkit-transition-timing-function: ease-in-out;
+	transition-timing-function: ease-in-out;
+}
+
+a {
+	outline: 0;
+}
+
+a:hover,
+a:active {
+	color: #2ea2cc;
+}
+
+a:focus {
+	color: #124964;
+}
+
+a:focus,
+a:active {
+	outline: thin dotted;
+}
+
+p {
+	line-height: 1.5;
+}
+
+.login .message {
+	border-left: 4px solid #2ea2cc;
+	padding: 1px 12px;
+	background-color: #fff;
+	-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+.login #login_error {
+	border-left: 4px solid #dd3d36;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,0.1);
+}
+
+#loginform p.submit,
+.login-action-lostpassword p.submit {
+	border: none;
+	margin: -10px 0 20px; /* May want to revisit this */
+}
+
+.login * {
+	margin: 0;
+	padding: 0;
+}
+
+.login form {
+	margin-top: 20px;
+	margin-left: 0;
+	padding: 26px 24px 46px;
+	font-weight: normal;
+	overflow: hidden;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+	box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+}
+
+.login form .forgetmenot {
+	font-weight: normal;
+	float: left;
+	margin-bottom: 0;
+}
+
+.login .button-primary:hover{
+background: none repeat scroll 0% 0% #1E8CBE;
+border-color:#2EA2CC;
+
+}
+
+.login .button-primary {
+	float: right;
+	
+	height: 30px;
+    line-height: 28px;
+    padding: 0px 12px 2px;
+	
+	font-size: 13px;
+	vertical-align: baseline;
+	
+	cursor: pointer;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 3px;
+	white-space: nowrap;
+	box-sizing: border-box;
+
+	background: none repeat scroll 0% 0% #2EA2CC;
+	border-color: #1E8CBE;
+	box-shadow: 0px 1px 0px rgba(120, 200, 230, 0.6) inset;
+	color: #FFF;
+}
+
+#login form p {
+	margin-bottom: 0;
+}
+
+#login form p.submit {
+	margin: 0;
+	padding: 0;
+}
+
+.login label {
+	color: #777;
+	font-size: 14px;
+}
+
+.login form .forgetmenot label {
+	font-size: 12px;
+	line-height: 19px;
+}
+
+.login h1 {
+	text-align: center;
+}
+/*LOGO*/
+.login h1 a {
+	background-image: url(../images/logo.png);
+	/*background-image: none, url(../images/w-logo-blue.png);*/
+	-webkit-background-size: 114px;
+	background-size: 114px;
+	background-position: center center;
+	background-repeat: no-repeat;
+	color: #999;
+	height: 134px;
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 1.3em;
+	margin: 0 auto 25px;
+	padding: 0;
+	text-decoration: none;
+	width: 124px;
+	text-indent: -9999px;
+	outline: none;
+	overflow: hidden;
+	display: block;
+}
+
+#login {
+	width: 320px;
+	padding: 4% 0 0;
+	margin: auto;
+}
+
+#login_error,
+.login .message {
+	margin-left: 0;
+	padding: 12px;
+}
+
+.login #nav,
+.login #backtoblog {
+	font-size: 13px;
+	padding: 0 24px 0;
+}
+
+.login #nav {
+	margin: 24px 0 0 0;
+}
+
+#backtoblog {
+	font-weight:bold;
+	margin-top: 14px ;
+	margin-left:35px;
+	margin-right:auto;
+	
+}
+
+.login #nav a,
+.login #backtoblog a {
+	text-decoration: none;
+	color: white;
+	
+}
+
+.login #nav a:hover,
+.login #backtoblog a:hover,
+.login h1 a:hover {
+	/*color: #2ea2cc;*/
+	color: #BE9BB2;
+}
+
+.login form .input,
+.login input[type="text"] {
+	font-size: 24px;
+	width: 100%;
+	padding: 3px;
+	margin: 2px 6px 16px 0;
+	
+	
+	border: 1px solid #DDD;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.07) inset;
+    background-color: #FFF;
+    color: #333;
+    outline: 0px none;
+    transition: border-color 0.05s ease-in-out 0s;
+}
+
+.login form .input,
+.login input[type="text"],
+.login form input[type="checkbox"] {
+	background: #fbfbfb;
+}
+
+.ie7 .login form .input,
+.ie8 .login form .input {
+	font-family: sans-serif;
+}
+
+.login #pass-strength-result {
+	width: 250px;
+	font-weight: 600;
+	margin: 12px 0 6px;
+	padding: 6px 5px;
+	text-align: center;
+}
+
+.mobile #login {
+	padding: 20px 0;
+}
+
+.mobile #login form,
+.mobile #login .message,
+.mobile #login_error {
+	margin-left: 0;
+}
+
+.mobile #login #nav,
+.mobile #login #backtoblog {
+	margin-left: 8px;
+}
+
+.mobile #login h1 a {
+	width: auto;
+}
+
+body.interim-login {
+	height: auto;
+}
+
+.interim-login #login {
+	padding: 0;
+	margin: 5px auto 20px;
+}
+
+.interim-login.login h1 a {
+	width: auto;
+}
+
+.interim-login #login_error,
+.interim-login.login .message {
+	margin: 0 0 16px;
+}
+
+.interim-login.login form {
+	margin: 0;
+}
+
+@-ms-viewport {
+	width: device-width;
+}
+
+@media screen and ( max-width: 782px ) {
+	.interim-login input[type=checkbox] {
+		height: 16px;
+		width: 16px;
+	}
+
+	.interim-login input[type=checkbox]:checked:before {
+		width: 16px;
+		font: normal 21px/1 'dashicons';
+		margin: -3px 0 0 -4px;
+	}
+}
+
+
+
