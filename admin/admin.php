@@ -10,48 +10,12 @@ require('meta_es_admin.php');
 <meta name=description content=""/>
 </head>   
 <body class="admin">
+<?php 
+include ('menu.php');
+$_REQUEST['page'] = '1';
+menu(); //llamo menu
+?>
 
-			<div class="menu">
-                <ul class="ca-menu">
-                    <li>
-                        <a href="#">
-                            <span class="ca-icon">&#77;</span>
-                            <div class="ca-content">
-                                <h2 class="ca-main">La Cartelera</h2>
-                                <h3 class="ca-sub"></h3>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="ca-icon">&#179;</span>
-                            <div class="ca-content">
-                                <h2 class="ca-main">Informes</h2>
-                                <h3 class="ca-sub"></h3>
-                            </div>
-                        </a>
-                    </li>					
-					<li>
-                        <a href="#">
-                            <span class="ca-icon">&#44;</span>
-                            <div class="ca-content">
-                                <h2 class="ca-main">Taquilla</h2>
-                                <h3 class="ca-sub"></h3>
-                            </div>
-                        </a>
-                    </li>
-					<li>
-                        <a href="#">
-                            <span class="ca-icon">&#88;</span>
-                            <div class="ca-content">
-                                <h2 class="ca-main">Cerrar Sesión</h2>
-                                <h3 class="ca-sub"></h3>
-                            </div>
-                        </a>
-                    </li>                    
-                </ul>
-
-			</div>
 <div id="content">		
 		<div id="marco">
 		<p>Hola mundo</p>	
