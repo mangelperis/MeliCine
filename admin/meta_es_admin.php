@@ -4,4 +4,5 @@
 <link rel="icon" type="image/x-icon"  href=favicon.ico />
 
 <link rel=stylesheet type="text/css" href="css/admin.css"/>
+<link rel=stylesheet type="text/css" href="clock/css/style.css"/>
 <!--<link href="http://fonts.googleapis.com/css?family=Lato:400,300,900,700" rel=stylesheet type='text/css'>*/-->

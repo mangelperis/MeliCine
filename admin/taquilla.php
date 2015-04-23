@@ -8,12 +8,11 @@ require('meta_es_admin.php');
 <title>MeliCine | Panel de administración | Taquilla</title>
 <meta name=keywords content=""/>
 <meta name=description content=""/>
-<link rel=stylesheet type="text/css" href="clock/css/style.css"/>
 </head>   
 <body class="admin">
 <?php 
 include ('menu.php');
-$_REQUEST['page'] = '1';
+$_REQUEST['page'] = '4';
 menu(); //llamo menu
 ?>
 <div id="welcome">

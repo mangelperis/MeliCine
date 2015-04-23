@@ -12,10 +12,14 @@ require('meta_es_admin.php');
 <body class="admin">
 <?php 
 include ('menu.php');
-$_REQUEST['page'] = '1';
+$_REQUEST['page'] = '0';
 menu(); //llamo menu
 ?>
-
+<div id="welcome">
+	<div class="marco">
+		<p>Bienvenido,<br/><br/> <span>$USER</span> </p><img  src="images/logo.png"/>
+	</div>
+</div>
 <div id="content">		
 		<div id="marco">
 		<p>Hola mundo</p>	
@@ -26,11 +30,13 @@ menu(); //llamo menu
 		<p>Hola mundo</p>	<p>Hola mundo</p>	<p>Hola mundo</p>	<p>Hola mundo</p>	<p>Hola mundo</p>	<p>Hola mundo</p>	
 		</div>
 </div>	
-<div id="sidebar">
-<p> test </p>
-</div>		
+	
 
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- JavaScript Includes CLOCK-->
+		<script src="clock/js/jquery.min.js"></script>
+		<script src="clock/js/moment.js"></script>
+		<script src="clock/js/script.js"></script>
 </body>
 </html>

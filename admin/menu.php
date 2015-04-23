@@ -21,12 +21,25 @@ function menu(){
 	
 	}elseif($result == '4'){
 		$id4 = 'class="selected"';
+	}elseif($result == '0'){
+		$id0 = 'class="selected"';
+	}elseif($result == '5'){
+		$id5 = 'class="selected"';
 	}
 	
 	print'   
 				<div class="menu">
                 <ul class="ca-menu">
 					<li '.$id0.'>
+                        <a href="admin.php">
+                            <span class="ca-icon">&#73;</span>
+                            <div class="ca-content">
+                                <h2 class="ca-main">Panel</h2>
+                                <h3 class="ca-sub"></h3>
+                            </div>
+                        </a>
+                    </li>
+					<li '.$id1.'>
                         <a href="#">
                             <span class="ca-icon">&#90;</span>
                             <div class="ca-content">
@@ -35,7 +48,7 @@ function menu(){
                             </div>
                         </a>
                     </li>
-					<li '.$id3.'>
+					<li '.$id2.'>
                         <a href="#">
                             <span class="ca-icon">&#179;</span>
                             <div class="ca-content">
@@ -44,7 +57,7 @@ function menu(){
                             </div>
                         </a>
                     </li>			
-                    <li '.$id1.'>
+                    <li '.$id3.'>
                         <a href="#">
                             <span class="ca-icon">&#77;</span>
                             <div class="ca-content">
