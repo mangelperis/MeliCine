@@ -6,161 +6,49 @@
 
          xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <url>      <loc>http://www.joseiborra.com</loc>
+  <url>      <loc>http://www.melicine.com</loc>
 
-      <lastmod>2014-08-10</lastmod>
+      <lastmod>2015-05-22</lastmod>
 
-      <changefreq>yearly</changefreq>
+      <changefreq>weekly</changefreq>
 
       <priority>1.000</priority>
 
    </url>
-   <url>     <loc>http://www.joseiborra.com/about.php</loc>
+   <url>     <loc>http://www.melicine.com/proximamente.php</loc>
 
-      <lastmod>2014-08-10</lastmod>
+      <lastmod>2015-05-22</lastmod>
+
+      <changefreq>weekly</changefreq>
+
+      <priority>0.5</priority>
+
+   </url>
+   <url>      <loc>http://www.melicine.com/about.php</loc>
+
+      <lastmod>2015-05-22</lastmod>
 
       <changefreq>yearly</changefreq>
 
       <priority>0.5</priority>
 
    </url>
-   <url>      <loc>http://www.joseiborra.com/contacto.php</loc>
+   <url>      <loc>http://www.melicine.com/privacidad.php</loc>
 
-      <lastmod>2014-08-10</lastmod>
+      <lastmod>2015-05-22</lastmod>
+
+      <changefreq>yearly</changefreq>
+
+      <priority>0.2</priority>
+
+   </url>
+   <url>      <loc>http://www.melicine.com/aviso_legal.php</loc>
+
+      <lastmod>2015-05-22</lastmod>
 
       <changefreq>yearly</changefreq>
 
       <priority>0.5</priority>
 
-   </url>
-   <url>      <loc>http://www.joseiborra.com/bodas.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.5</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/books.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.5</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/maternidad.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.5</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/familiar.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.5</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/comuniones.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.5</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/comerciales.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.5</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/vintage.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.5</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/galeria-bodas.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.2</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/galeria-books.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.2</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/galeria-maternidad.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.2</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/galeria-familiar.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.2</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/galeria-comuniones.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.2</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/galeria-comerciales.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.2</priority>
-
-   </url>
-   <url>      <loc>http://www.joseiborra.com/vintage.php</loc>
-
-      <lastmod>2014-08-10</lastmod>
-
-      <changefreq>monthly</changefreq>
-
-      <priority>0.2</priority>
-
-   </url>
-   
-  
-
-   
+   </url>     
 </urlset> 

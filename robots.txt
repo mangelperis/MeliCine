@@ -3,11 +3,7 @@ Sitemap: http://localhost/sitemap.xml
 # Disallowed Folders
 
 #User-agent: *
-#Disallow: gallery
-#Disallow: images/
-#Disallow: /js/
-#Disallow: /s/
-#Disallow: /style/
+#Disallow: 
 
 #################################################
 User-agent: BotRightHere

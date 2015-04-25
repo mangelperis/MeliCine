@@ -24,15 +24,11 @@ function menu(){
 	$id3= NULL;	
 	
 	if ($result == '1') {
-		$id1 = 'class="active"';
-		
-	
+		$id1 = 'class="active"';	
 	}elseif ($result == '2') {
-		$id2 = 'class="active"';
-		
+		$id2 = 'class="active"';		
 	}elseif ($result == '3') {
-		$id3 = 'class="active"';
-	
+		$id3 = 'class="active"';	
 	}
 	
 	print'   
@@ -72,135 +68,5 @@ function footer(){
 </body>
 </html>
 	';
-}
-
-
-
-
-function menu_es()
-{
-//CODIGOS DE PAGINA
-// id1== Inicio,Index				1
-// id2== Portfolio			        -
-	// id2_1==  Bodas				2
-	// id2_2 == Books				2
-	// id2_3 == Maternidad			2
-	// id2_4 == Familiares			2
-	// id2_5 == Comuniones			2
-	// id2_6 == Vintage				2
-	// id2_7 == Comerciales			2
-// id3 == About					    3
-// id4== Contacto				    4
-
-$id1= NULL;			
-$id2=NULL;
-$id2_1=NULL;	
-$id3 =NULL;
-$id4=NULL;
-	
-$result = $_REQUEST['page'];
-	
-//Bucle comprobar nº de pag.
-if ($result == '1') {
-$id1 = 'class=active';
-}elseif ($result == '2') {
-$id2_1 = 'class=active';
-$id2 = 'class=active';
-} elseif ($result == '3') {
-$id3 = 'class=active';
-} elseif ($result == '4') {
-$id4 = 'class=active';
-}
-
-print '
-<img id="preloader" alt="preloader" src="images/preloader/preloader.gif" height="32" width="32" >
-<div class=left-menu>
-<a class=logo href=.>
-<img src="images/logo.png" height="76" width="210" alt="logo"/>
-</a>
-<nav class=main-navi>
-<ul>
-<li>
-<a   href=.>
-inicio
-<span class=dot></span>
-<span class=corner></span>
-</a>
-</li>
-<li  id=portfolioLink>
-<a '.$id2.'  >portfolio
-<span class=dot></span>
-<span class=corner></span>
-</a>
-<ul class=drop-down>
-<li>
-<a '.$id2_1.' href=bodas>
-Bodas
-</a>
-</li>
-<li>
-<a '.$id2_1.' href=books>
-Books
-</a>
-</li>
-<li>
-<a '.$id2_1.' href=maternidad>
-Maternidad
-</a>
-</li>
-<li>
-<a '.$id2_1.' href=familiar>
-Familiar
-</a>
-</li>
-<li>
-<a '.$id2_1.' href=comuniones>
-Comuniones
-</a>
-</li>
-<!-- <li>
-<a '.$id2_1.' href=vintage>
-Vintage
-</a>
-</li>-->
-<li>
-<a '.$id2_1.' href=comerciales>
-Comerciales
-</a>
-</li>
-</ul>
-</li>
-<li>
-<a  '.$id3.' href=about> sobre mí 
-<span class=dot></span>
-<span class=corner></span>
-</a>
-</li>
-<!-- <li>
-<a  href=service.html>
-servicios
-<span class=dot></span>
-<span class=corner></span>
-</a>
-</li>-->
-<li>
-<a '.$id4.' href=contacto>
-contacto
-<span class=dot></span>
-<span class=corner></span>
-</a>
-</li>
-</ul>
-<em id=showHideMenu class="show-hide-menu glyph fa-bars" ></em>
-</nav>
-<div class=soc-icons>
-<a class="glyph fa-facebook" href="https://www.facebook.com/jose.iborra.31" target=_blank ></a>
-<a class="glyph fa-google-plus" href="https://plus.google.com/u/0/110366656101126032803/" target=_blank></a>
-</div>
-<p class=copy style=color:#F2F0F0;>
-José Iborra © '.date("Y").' 
-</p>
-</div>
-';
 }
 ?>

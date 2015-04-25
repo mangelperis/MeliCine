@@ -3,6 +3,7 @@
 function menu(){
 	
 	$result = $_REQUEST['page'];
+	$id0= NULL;
 	$id1= NULL;	
 	$id2= NULL;	
 	$id3= NULL;	
@@ -10,15 +11,11 @@ function menu(){
 	$id5= NULL;
 	
 	if ($result == '1') {
-		$id1 = 'class="selected"';
-		
-	
+		$id1 = 'class="selected"';	
 	}elseif ($result == '2') {
-		$id2 = 'class="selected"';
-		
+		$id2 = 'class="selected"';		
 	}elseif ($result == '3') {
-		$id3 = 'class="selected"';
-	
+		$id3 = 'class="selected"';	
 	}elseif($result == '4'){
 		$id4 = 'class="selected"';
 	}elseif($result == '0'){
@@ -31,7 +28,7 @@ function menu(){
 				<div class="menu">
                 <ul class="ca-menu">
 					<li '.$id0.'>
-                        <a href="admin.php">
+                        <a href="panel.php">
                             <span class="ca-icon">&#73;</span>
                             <div class="ca-content">
                                 <h2 class="ca-main">Panel</h2>
@@ -85,6 +82,11 @@ function menu(){
                         </a>
                     </li>                    
                 </ul>
+				<div id="welcome">
+					<div class="marco">
+						<p>Bienvenido, <br/><br/> <span>$USER</span> </p><img  src="images/logo.png"/>
+					</div>
+				</div>
 			<div id="clock" class="light">
 			<div class="display">
 				<div class="weekdays"></div>

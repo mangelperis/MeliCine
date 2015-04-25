@@ -13,14 +13,8 @@ require('meta_es_admin.php');
 <?php 
 include ('menu.php');
 $_REQUEST['page'] = '4';
-menu(); //llamo menu
+menu(); //llamo menu + clock + welcome
 ?>
-<div id="welcome">
-	<div class="marco">
-		<p>Bienvenido,<br/><br/> <span>$USER</span> </p><img  src="images/logo.png"/>
-	</div>
-</div>
-
 <div id="content">		
 		<div id="marco">
 			<table class="taquilla" cellpadding="0" cellspacing="0"> 
@@ -34,7 +28,7 @@ menu(); //llamo menu
 				</tr>
 					<tr>
 						<td>
-							<img style="margin-top:3px;" src="../files/losvengadores.jpg"   alt="Cartel película" width="130" height="186" border="0" />
+							<img style="margin-top:3px;" src="../files/losvengadores.jpg"   alt="Cartel película" width="91" height="131" border="0" />
 						</td>
 						<td class="titulo">
 							<strong>LOS VENGADORES: LA ERA DE ULTRÓN</strong> 
@@ -50,7 +44,7 @@ menu(); //llamo menu
 						</td>
 						<td>
 							<center>
-							<div class="button-holder"><a class="button" href="">Generar entrada</a>
+							<div class="button-holder"><a class="button" href="entradas/entradas.php" target="_blank">Generar entrada</a>
 								<select>
 									 <option selected value="1">1</option>
 									 <option value="2">2</option>
@@ -70,7 +64,7 @@ menu(); //llamo menu
 				<!-- SEPARADOR --> 
 									<tr>
 						<td>
-							<img style="margin-top:3px;" src="../files/sweethome.jpg"   alt="Cartel película" width="130" height="186" border="0" />
+							<img style="margin-top:3px;" src="../files/sweethome.jpg"   alt="Cartel película" width="91" height="131" border="0" />
 						</td>
 						<td class="titulo">
 							<strong>SWEET HOME</strong> 
@@ -82,7 +76,7 @@ menu(); //llamo menu
 							20:00
 						</td>
 						<td>
-							SALA 2
+							Sala 2
 						</td>
 						<td>
 							<center>

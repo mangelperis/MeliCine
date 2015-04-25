@@ -5,8 +5,8 @@
 require('meta_es.php');
 ?>
 <title>MeliCine | Salas de cine en l'Horta Nord</title>
-<meta name=keywords content=""/>
-<meta name=description content=""/>
+<meta name=keywords content="admin panel"/>
+<meta name=description content="Login al panel de administración. Si tiene problemas, comunique con su administrador a mangelperis@gmail.com"/>
 
 
 <script type="text/javascript">
@@ -26,7 +26,7 @@ l = (screen.availWidth - w)  /2;
 //menu_index_es();
 ?>  
 <div id="login">
-		<h1><a href="#" title="MeliCine" tabindex="-1"></a></h1>
+		<h1><a title="MeliCine" tabindex="-1"></a></h1>
 <form name="loginform" id="loginform" action="#" method="post">
 	<p>
 		<label for="user_login">Usuario<br />
@@ -45,7 +45,7 @@ l = (screen.availWidth - w)  /2;
 </form>
 
 	<p id="backtoblog"><a href="#" onclick="MM_openBrWindow('recuperarclave.php','')" title="Recuperar contraseña perdida">  ¿Has perdido tu contraseña?</a></p>
-	<p id="backtoblog"><a href="#" title="Volver atrás">« Volver a MeliCine</a></p>
+	<p id="backtoblog"><a href="../" title="Volver atrás">« Volver a MeliCine</a></p>
 	
 
 </div>
