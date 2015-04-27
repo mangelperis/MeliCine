@@ -61,15 +61,10 @@ menu(); //llamo menu
 slider(); //llamo carousel
  ?>	
 <div id="calificacion">
-
 	<div id="fecha" style="margin-top:3px;"><script language="JavaScript">MostrarFecha()</script></div>
-	<div id="logo_cart" style="margin-left:10px; "><img src="imagenes/proximamente.png" width="147" height="30" alt=" " />
-    </div>
-    <div id="menu1" style="margin-left:10px"></div>
-    <div id="menu2" style="margin-left:10px"></div>
-<br />
-<hr align="left" width="720" style="margin-top:13px"/>
-
+	<div id="logo_cart" style="margin-left:10px; "><img src="imagenes/proximamente.png" width="147" height="30" alt="PRÓXIMAMENTE" /></div>
+	<br />
+	<hr align="left" width="720" style="margin-top:13px"/>
 </div>
 <div id="principal">
 	

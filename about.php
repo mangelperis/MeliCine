@@ -18,8 +18,7 @@ menu(); //llamo menu
  ?>	
 <div id="mapa_cine">
 <iframe style="margin-left:60px;position:absolute;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3077.2631301865395!2d-0.3500612999999999!3d39.531117699999996!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6046f6eaa342bf%3A0x90a011ebea6af4d8!2sCarrer+de+Sant+Ferran%2C+46133+Meliana%2C+Valencia!5e0!3m2!1ses!2ses!4v1427903005274" width="560" height="430" frameborder="0" style="border:0"></iframe>
-    <div id="desc_cine" align="right" >
-    
+    <div id="desc_cine" align="right" >    
 						<table width="282" height="426" border="0" cellpadding="0" cellspacing="0" class="tbgubi" style="margin-right:2px">
                           <tr>
                             <td width="210" height="43" align="left"><span class="letralogo">MeliCine <span style="color:#E57502;">(Meliana)</span></span></td>
@@ -48,9 +47,7 @@ menu(); //llamo menu
                                </span><span class="txtb"> </span><span class="txtazul"><br />
                              Todos los días (Sin excepción)    </span><span class="txtb">6,50 €   </span><span class="txtazul"><br />
                               
-						</div> 
-
-                        
+						</div>                       
     </div>
 </div>
 <div id="principal_cine">

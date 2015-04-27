@@ -60,21 +60,16 @@ menu(); //llamo menu
 slider(); //llamo carousel
  ?>	
 <div id="calificacion">
-
 	<div id="fecha" style="margin-top:3px;"><script language="JavaScript">MostrarFecha()</script></div>
-	<div id="logo_cart" style="margin-left:10px; "><img src="imagenes/la_cartelera.png" width="147" height="30" alt=" " />
-    </div>
-    <div id="menu1" style="margin-left:10px"></div>
-    <div id="menu2" style="margin-left:10px"></div>
-<br />
-<hr align="left" width="720" style="margin-top:13px"/>
-
+	<div id="logo_cart" style="margin-left:10px; "><img src="imagenes/la_cartelera.png" width="147" height="30" alt=" " /></div>
+	<br />
+	<hr align="left" width="720" style="margin-top:13px"/>
 </div>
 <div id="principal">
 	
 		<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
 			<tr>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
+			  <td width="144" height="186" align="left"><a href="pelicula.php"><img src=
 			  "files/losvengadores.jpg"
 			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
 			  <td width="144" height="186" align="left"><a href="#"><img src=

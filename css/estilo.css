@@ -103,6 +103,15 @@ hr {
 	border:0;
 	margin-top:5px;
 	 }
+#detalle{
+	position:absolute;
+	width: 960px;
+	height: 66px;
+	top: 225px;
+	background-color:transparent;
+	z-index:4;
+	margin-left:60px;
+}	 
 #calificacion{
 	position:absolute;
 	width: 960px;
@@ -136,8 +145,9 @@ hr {
 	height:30px;
 }
 #menu1{
+	margin-top:30px;
 	position:absolute;
-	left:480px;
+	left:500px;
 	width:180px;
 	height:30px;
 }
@@ -165,6 +175,7 @@ hr {
     z-index: 6;
 }*/
 table td img {
+text-align:left;
     border: 1px solid #736E6E;
 }
 .pelis {
@@ -273,9 +284,56 @@ table td img {
 	/*background-color:#fff;*/
 	
 }	
+#principal_pelicula{
+	position:absolute;
+	background-color:transparent;
+	width: 960px;
+	height: auto;	
+	top: 300px;
+	/*background-color:#fff;*/
+	
+}	
+.tit_detalle{
+padding-bottom:15px;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+color:#C4C4C4;
+font-size:28px;
+}
+#detalle_pelicula{
+	margin-left:60px;
+	width: 920px;
+	height: 190px;
+}
+table.pelicula{
+
+width:860px;
+color:#E7E5E5;
+
+}
+th{
+background-color:#E7E5E5;
+height:28px;
+border:1px solid gray;
+color:#E67E46;
+}
+.pelicula span{
+color:#E67E46;
+}
+.pelicula  td{
+font-family: "trebuchet ms";
+border:1px solid gray;
+text-align:center;
+background-color:transparent;
+}
+
+
+.tsep{
+color:#0099C5;
+}
+
 #fotos_cine{
 	margin-left:140px;
-	width: 720px;
+	width: 920px;
 	height: 190px;
 }
 .bordeb {
