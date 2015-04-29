@@ -1,11 +1,11 @@
 <?php 
 require_once('PHPMailer/class.phpmailer.php');
-function EnviarEmail($para,$paranombre,$asunto,$cont,$de='secretaria@cafbal.com',$denombre='cafbal.com') {
+function EnviarEmail($para,$paranombre,$asunto,$cont,$de='mangel@idsplus.net',$denombre='MeliCine.com') {
   try {
 	$mail= new PHPMailer(true);
 	$ok = true;
 	$mail->IsSMTP(); // telling the class to use SMTP
-	$mail->Host       = "mail.cafbal.com"; // SMTP server
+	$mail->Host       = "mail.idsplus.net"; // SMTP server
 	//$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
 	// 1 = errors and messages
 	// 2 = messages only
@@ -13,11 +13,9 @@ function EnviarEmail($para,$paranombre,$asunto,$cont,$de='secretaria@cafbal.com'
 	$mail->SMTPDebug  = 0;
 	
 	$mail->Port       = 25;                    // set the SMTP port for the GMAIL server
-	$mail->Username   = "secretaria@cafbal.com"; // SMTP account username
-	$mail->Password   = "pGKAK9z0Ppt989";        // SMTP account password
+	$mail->Username   = "mangel@idsplus.net"; // SMTP account username
+	$mail->Password   = "2aMaZuna";        // SMTP account password
 	$mail->CharSet	  = "utf-8";
-
-
 	
 		$mail->From = $de;
 		$mail->FromName= $denombre;
