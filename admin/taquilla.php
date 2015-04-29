@@ -1,3 +1,26 @@
+<?php
+//creamos la sesion
+if (!isset($_SESSION)) { 
+  session_start();
+}
+//validamos si se ha hecho o no el inicio de sesion correctamente
+
+//si no se ha hecho la sesion volvemos al login form
+if(!isset($_SESSION['username'])) 
+{  
+  header('Location: index.php'); 
+  exit();
+}
+
+//VOY A SIMULAR QUE DENIEGO EL ACCESO AL GRUPO Taquilla a este archivo/*
+if($_SESSION['usermaestro'] == 2)
+{
+	$_SESSION['session'] = '403' ;
+	header('Location: index.php'); 
+	exit();	
+}
+
+ ?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -13,7 +36,12 @@ require('meta_es_admin.php');
 <?php 
 include ('menu.php');
 $_REQUEST['page'] = '4';
-menu(); //llamo menu + clock + welcome
+if ($_SESSION['usermaestro'] == '1'){
+	menu(); //llamo menu + clock + welcome	
+}
+if ($_SESSION['usermaestro'] == '2'){
+	menu_tq(); //llamo menu + clock + welcome	
+}
 ?>
 <div id="content">		
 		<div id="marco">

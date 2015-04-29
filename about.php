@@ -4,15 +4,12 @@
 <?php 
 require('meta_es.php');
 ?>
-
 <title>MeliCine | Sobre el cine</title>
-
 </head>   
 <body >
 <?php 
 include('funciones.php');  
 head(); //llamo logo + social
-//RESERVADO PARA $_POST de menú
 $_REQUEST['page'] = '3';
 menu(); //llamo menu
  ?>	
@@ -31,8 +28,10 @@ menu(); //llamo menu
 							961 49X XYY<br /></td>
                           </tr>
                           <tr>
-                            <td height="27" colspan="2" align="left"><span class="txtazul">SALAS:</span> 4<br />
-                            <!--<span class="txtazul">LOCALIDADES:</span> 1899 --></td>
+                            <td height="27" colspan="2" align="left">
+								<span class="txtazul">SALAS:</span> 4<br />
+								<span class="txtazul">LOCALIDADES:</span> 200
+							</td>
                           </tr>
                           <tr>
                             <td colspan="2" align="left" valign="top"><br />
@@ -42,11 +41,17 @@ menu(); //llamo menu
                              </td>
                           </tr>
                         </table>
-                        <div id="pdigital" align="left">             <br /><span class="txtazul">                                                   
-                             <span class="txtb">Precio único </span> <br />
-                               </span><span class="txtb"> </span><span class="txtazul"><br />
-                             Todos los días (Sin excepción)    </span><span class="txtb">6,50 €   </span><span class="txtazul"><br />
-                              
+                        <div id="pdigital" align="left">            
+								<br />
+							<span class="txtazul">                                                   
+								<span class="txtb">Precio único </span>
+									<br />
+                            </span>
+							<span class="txtazul">
+								<br />
+                             Todos los días (Sin excepción)   
+							</span>
+							<span class="txtb">6,50 € </span>								                             
 						</div>                       
     </div>
 </div>

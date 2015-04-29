@@ -1,5 +1,5 @@
 <?php
-//MENU (page)
+//MENU (page) para ADMINISTRADORES
 function menu(){
 	
 	$result = $_REQUEST['page'];
@@ -73,7 +73,7 @@ function menu(){
                         </a>
                     </li>
 					<li '.$id5.'>
-                        <a href="#">
+                        <a href="desconectar.php">
                             <span class="ca-icon">&#88;</span>
                             <div class="ca-content">
                                 <h2 class="ca-main">Cerrar Sesión</h2>
@@ -84,7 +84,7 @@ function menu(){
                 </ul>
 				<div id="welcome">
 					<div class="marco">
-						<p>Bienvenido, <br/><br/> <span>$USER</span> </p><img  src="images/logo.png"/>
+						<p>Bienvenido, <br/><br/> <span>'.$_SESSION['username'].'</span> </p><img  src="images/logo.png"/>
 					</div>
 				</div>
 			<div id="clock" class="light">
@@ -98,4 +98,77 @@ function menu(){
 			</div>';
 	
 }
+/******************************************************/
+//MENU para EMP.Taquilla
+function menu_tq(){
+	$result = $_REQUEST['page'];
+	$id0= NULL;
+	$id1= NULL;	
+	$id2= NULL;	
+	$id3= NULL;	
+	$id4= NULL;
+	$id5= NULL;
+	
+	if ($result == '1') {
+		$id1 = 'class="selected"';	
+	}elseif ($result == '2') {
+		$id2 = 'class="selected"';		
+	}elseif ($result == '3') {
+		$id3 = 'class="selected"';	
+	}elseif($result == '4'){
+		$id4 = 'class="selected"';
+	}elseif($result == '0'){
+		$id0 = 'class="selected"';
+	}elseif($result == '5'){
+		$id5 = 'class="selected"';
+	}
+	
+	print'   
+				<div class="menu">
+                <ul class="ca-menu">
+					<li '.$id0.'>
+                        <a href="panel.php">
+                            <span class="ca-icon">&#73;</span>
+                            <div class="ca-content">
+                                <h2 class="ca-main">Panel</h2>
+                                <h3 class="ca-sub"></h3>
+                            </div>
+                        </a>
+                    </li>
+					<li '.$id4.'>
+                        <a href="taquilla.php">
+                            <span class="ca-icon">&#44;</span>
+                            <div class="ca-content">
+                                <h2 class="ca-main">Taquilla</h2>
+                                <h3 class="ca-sub"></h3>
+                            </div>
+                        </a>
+                    </li>
+					<li '.$id5.'>
+                        <a href="desconectar.php">
+                            <span class="ca-icon">&#88;</span>
+                            <div class="ca-content">
+                                <h2 class="ca-main">Cerrar Sesión</h2>
+                                <h3 class="ca-sub"></h3>
+                            </div>
+                        </a>
+                    </li>                    
+                </ul>
+				<div id="welcome">
+					<div class="marco">
+						<p>Bienvenido, <br/><br/> <span>'.$_SESSION['username'].'</span> </p><img  src="images/logo.png"/>
+					</div>
+				</div>
+			<div id="clock" class="light">
+			<div class="display">
+				<div class="weekdays"></div>
+				<!--<div class="ampm"></div>-->
+				
+				<div class="digits"></div>
+			</div>
+		</div>
+			</div>';
+	
+}
+
 ?>

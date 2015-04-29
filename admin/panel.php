@@ -1,3 +1,19 @@
+<?php
+//creamos la sesion
+if (!isset($_SESSION)) { 
+  session_start();
+}
+//validamos si se ha hecho o no el inicio de sesion correctamente
+
+//si no se ha hecho la sesion volvemos al login form
+if(!isset($_SESSION['username'])) 
+{		
+	$_SESSION['session'] = false ;
+	header('Location: index.php'); 
+	exit();
+}
+	
+ ?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -15,20 +31,21 @@ require('meta_es_admin.php');
 <?php 
 include ('menu.php');
 $_REQUEST['page'] = '0';
-menu(); //llamo menu + clock + welcome
-?>
+if ($_SESSION['usermaestro'] == '1'){
+	menu(); //llamo menu + clock + welcome	
+}
+if ($_SESSION['usermaestro'] == '2'){
+	menu_tq(); //llamo menu + clock + welcome	
+}
 
+?>
 <div id="content">		
 		<div id="marco">
 			<h3>Resumen de ventas de entradas a la semana</h3>
 			<canvas id="canvas" width="400" height="100"></canvas>
 			<h3>Entradas generadas por película hoy</h3>
-			<center><canvas id="chart-area" width="300" height="300"/></center>
-				
-				
-		</div>
-		
-		
+			<center><canvas id="chart-area" width="300" height="300"/></center>				
+		</div>		
 </div>	
 <script>
 		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
