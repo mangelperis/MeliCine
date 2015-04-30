@@ -1,3 +1,23 @@
+<?php
+
+	require_once('admin/Connections/conexion.php');
+		//DEFINO EL FILTRO DEL CAMPO ESTADO
+		$estado = 2;
+			$records = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado');
+			$records->bindParam(':estado', $estado);
+			$records->execute();
+			//$results = $records->fetch(PDO::FETCH_ASSOC);
+						
+			$records2 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado');
+			$records2->bindParam(':estado', $estado);
+			$records2->execute();
+			//$results = $records2->fetch(PDO::FETCH_ASSOC);	
+			
+			$records3 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado');
+			$records3->bindParam(':estado', $estado);
+			$records3->execute();
+			//$results = $records3->fetch(PDO::FETCH_ASSOC);	
+?>  
 <!doctype html>
 <html lang="es">
 <head>
@@ -67,50 +87,71 @@ slider(); //llamo carousel
 	<hr align="left" width="720" style="margin-top:13px"/>
 </div>
 <div id="principal">
-	
 		<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
 			<tr>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
-			  "files/mad.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/tomorrow.jpg"			  
-			   width="130" height="186" border="0" /></a></td>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/jworld.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/ted.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			 <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/peterpan.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			 
+<?php
+
+		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
+			print('
+			  <td width="144" height="186" align="left">
+				<a href="pelicula.php?id='.$results['Codigo'].'">
+				');
+				if(is_file('imagenes/pelis/'.$results['Cartel'])){				
+					print('	<img src="imagenes/pelis/'.$results['Cartel'].'" alt="Cartel '.$results['Titulo'].'" width="130" height="186" border="0" /> ');
+				}else{
+					print('	<img src="imagenes/pelis/no_disponible.jpg" alt="Cartel no disponible" width="130" height="186" border="0" /> ');
+				}								
+			print('	
+				</a>
+			  </td>
+			
+			');
+						
+		}
+?>			 
 			</tr>
 			<tr>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			   MAD MAX: FURIA EN LA CARRETERA
-				</div></td>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			   TOMORROWLAND
-				</div></td>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			   JURASSIC WORLD
-				</div></td>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			  TED 2
-				</div></td>
-				<td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			  PETER PAN
-				</div></td>
-			  
-			</tr>
-		</table>
+<?php
 	
+		while( $results = $records2->fetch(PDO::FETCH_ASSOC) ){
+			print('
+			  <td height="60" align="left" valign="top" >
+				<div style="margin-right:10px">
+				'.strtoupper($results['Titulo']).'
+				</div>
+			</td>
+			
+			');			
+		}
+?>						  
+			</tr>
+			<tr>
+<?php
+	
+		while( $results = $records3->fetch(PDO::FETCH_ASSOC) ){
+				/***** CONVERTIR FECHAS A ESPAÑOL ***********/
+					$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+					$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+					$fecha = strtotime($results['Fecha estreno']); 
+					 
+					//echo $dias[date('w')]." ".date('d')." de ".$meses[date('n')-1]. " del ".date('Y') ;
+					//Salida: Viernes 24 de Febrero del 2012
+					//date('d M, Y',strtotime($results['Fecha estreno']))
+					//Salida: 29 May, 2015
+					//$dias[date('d',$fecha)]." de ".$meses[date('n',$fecha)-1]
+				/******************************************/	
+			print('
+			  <td height="60" align="left" valign="top" >
+				<div style="margin-right:10px;font-style:italic;">
+				'.date('d',$fecha)." de ".$meses[date('n',$fecha)-1]. " del ".date('Y',$fecha).'
+				</div>
+			</td>
+			
+			');			
+		}
+?>	
+			</tr>			
+		</table>	
+		
 </div>
 <?php footer();?>	

@@ -190,7 +190,7 @@ text-align:left;
 	margin-left:60px;
 	width: 960px;
 	height: 92px;
-	top: 859px;
+	top: 865px;
 	background-color:#000;
 	z-index:9;
 }
@@ -294,6 +294,7 @@ text-align:left;
 	
 }	
 .tit_detalle{
+width:500px;
 padding-bottom:15px;
 font-family: 'Yanone Kaffeesatz', sans-serif;
 color:#C4C4C4;

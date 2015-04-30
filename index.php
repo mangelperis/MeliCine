@@ -1,3 +1,18 @@
+<?php
+
+	require_once('admin/Connections/conexion.php');
+		//DEFINO EL FILTRO DEL CAMPO ESTADO
+		$estado = 1;
+			$records = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado');
+			$records->bindParam(':estado', $estado);
+			$records->execute();
+			//$results = $records->fetch(PDO::FETCH_ASSOC);
+						
+			$records2 = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado');
+			$records2->bindParam(':estado', $estado);
+			$records2->execute();
+			//$results = $records2->fetch(PDO::FETCH_ASSOC);	
+?>  
 <!doctype html>
 <html lang="es">
 <head>
@@ -66,51 +81,44 @@ slider(); //llamo carousel
 	<hr align="left" width="720" style="margin-top:13px"/>
 </div>
 <div id="principal">
-	
 		<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
 			<tr>
-			  <td width="144" height="186" align="left"><a href="pelicula.php"><img src=
-			  "files/losvengadores.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/sweethome.jpg"			  
-			   width="130" height="186" border="0" /></a></td>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/walkingon.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			  <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/elguru.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			     <td width="144" height="186" align="left"><a href="#"><img src=
-			   "files/maestroagua.jpg"
-			   alt="Cartel película" width="130" height="186" border="0" /></a></td>
-			   
-			 
+<?php
+
+		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
+			print('
+			  <td width="144" height="186" align="left">
+				<a href="pelicula.php?id='.$results['Codigo'].'">
+				');
+				if(is_file('imagenes/pelis/'.$results['Cartel'])){				
+					print('	<img src="imagenes/pelis/'.$results['Cartel'].'" alt="Cartel '.$results['Titulo'].'" width="130" height="186" border="0" /> ');
+				}else{
+					print('	<img src="imagenes/pelis/no_disponible.jpg" alt="Cartel no disponible" width="130" height="186" border="0" /> ');
+				}								
+			print('	
+				</a>
+			  </td>
+			
+			');
+						
+		}
+?>			 
 			</tr>
 			<tr>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			  LOS VENGADORES: LA ERA DE ULTRÓN
-				</div></td>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			  SWEET HOME
-				</div></td>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			   WALKING ON SUNSHINE
-				</div></td>
-			  <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			   EL GURÚ DE LAS BODAS
-				</div></td>
-				 <td height="60" align="left" valign="top" >
-			  <div style="margin-right:10px">
-			   EL MAESTRO DEL AGUA
-				</div></td>
-			  
-			</tr>
-		</table>
+<?php
 	
+		while( $results = $records2->fetch(PDO::FETCH_ASSOC) ){
+			print('
+			  <td height="60" align="left" valign="top" >
+				<div style="margin-right:10px">
+				'.strtoupper($results['Titulo']).'
+				</div>
+			</td>
+			
+			');			
+		}
+?>						  
+			</tr>
+		</table>	
 </div>
 <?php footer();?>	
