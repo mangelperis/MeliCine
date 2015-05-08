@@ -19,6 +19,27 @@ if($_SESSION['usermaestro'] == 2)
 	header('Location: index.php'); 
 	exit();	
 }
+//CONEXION A BDD Y CONSULTAS 
+require_once('Connections/conexion.php');
+
+$hoy = date("Y-m-d");       
+			$records = $databaseConnection->prepare('SELECT * FROM  pases WHERE DiaPase = :fechahoy');
+			$records->bindParam(':fechahoy', $hoy);
+			$records->execute();
+			//$results = $records->fetch(PDO::FETCH_ASSOC);
+
+	//echo $hoy;	
+		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
+			print("
+			NUMSALA -> $results[NumSala] <br/>
+			NumSesion -> $results[NumSesion] <br/>
+			DiaPase -> $results[DiaPase] <br/>
+			Vendidas -> $results[Vendidas] <br/>
+			CodigoPeli -> $results[CodigoPeli] <br/>
+			
+			
+		");
+		}
 
  ?>
 <!doctype html>

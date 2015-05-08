@@ -30,7 +30,7 @@ menu(); //llamo menu
                           <tr>
                             <td height="27" colspan="2" align="left">
 								<span class="txtazul">SALAS:</span> 4<br />
-								<span class="txtazul">LOCALIDADES:</span> 200
+								<span class="txtazul">LOCALIDADES (según sala):</span> De 150 hasta 225
 							</td>
                           </tr>
                           <tr>

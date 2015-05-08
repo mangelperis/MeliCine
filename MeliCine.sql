@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2015 a las 10:01:53
+-- Tiempo de generación: 08-05-2015 a las 13:26:45
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -352,6 +352,33 @@ INSERT INTO `paises` (`Codigo`, `Pais`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `pases`
+--
+
+CREATE TABLE IF NOT EXISTS `pases` (
+  `NumSala` smallint(2) NOT NULL,
+  `NumSesion` int(11) NOT NULL,
+  `DiaPase` date NOT NULL,
+  `Vendidas` int(3) unsigned NOT NULL DEFAULT '0',
+  `CodigoPeli` smallint(5) unsigned NOT NULL,
+  `NumPase` int(11) DEFAULT NULL,
+  PRIMARY KEY (`NumSala`,`NumSesion`),
+  KEY `fk_numsesion` (`NumSesion`),
+  KEY `codpeli` (`CodigoPeli`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `pases`
+--
+
+INSERT INTO `pases` (`NumSala`, `NumSesion`, `DiaPase`, `Vendidas`, `CodigoPeli`, `NumPase`) VALUES
+(1, 3, '2015-05-08', 0, 3, NULL),
+(1, 4, '2015-05-25', 0, 3, NULL),
+(2, 3, '2015-05-25', 0, 1, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `peliculas`
 --
 
@@ -396,6 +423,57 @@ INSERT INTO `peliculas` (`Codigo`, `Titulo`, `Genero`, `Pais`, `Duracion`, `Dire
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `salas`
+--
+
+CREATE TABLE IF NOT EXISTS `salas` (
+  `NumSala` smallint(2) NOT NULL AUTO_INCREMENT,
+  `Butacas` int(3) unsigned NOT NULL,
+  PRIMARY KEY (`NumSala`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `salas`
+--
+
+INSERT INTO `salas` (`NumSala`, `Butacas`) VALUES
+(1, 200),
+(2, 225),
+(3, 150),
+(4, 175);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sesiones`
+--
+
+CREATE TABLE IF NOT EXISTS `sesiones` (
+  `NumSesion` int(11) NOT NULL AUTO_INCREMENT,
+  `HoraIni` time NOT NULL,
+  `HoraFin` time DEFAULT NULL COMMENT 'Duracion Peli',
+  PRIMARY KEY (`NumSesion`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `sesiones`
+--
+
+INSERT INTO `sesiones` (`NumSesion`, `HoraIni`, `HoraFin`) VALUES
+(1, '16:00:00', NULL),
+(2, '18:00:00', NULL),
+(3, '20:00:00', NULL),
+(4, '22:00:00', NULL),
+(5, '16:30:00', NULL),
+(6, '17:30:00', NULL),
+(7, '18:30:00', NULL),
+(8, '19:30:00', NULL),
+(9, '20:30:00', NULL),
+(10, '21:30:00', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuarios`
 --
 
@@ -420,6 +498,14 @@ INSERT INTO `usuarios` (`ID`, `usuario`, `nombre`, `password`, `email`, `usermae
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `pases`
+--
+ALTER TABLE `pases`
+  ADD CONSTRAINT `fk_codigopei` FOREIGN KEY (`CodigoPeli`) REFERENCES `peliculas` (`Codigo`),
+  ADD CONSTRAINT `fk_numsala` FOREIGN KEY (`NumSala`) REFERENCES `salas` (`NumSala`),
+  ADD CONSTRAINT `fk_numsesion` FOREIGN KEY (`NumSesion`) REFERENCES `sesiones` (`NumSesion`);
 
 --
 -- Filtros para la tabla `peliculas`

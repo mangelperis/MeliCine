@@ -4,20 +4,12 @@
 		//DEFINO EL FILTRO POR CODIGO PELICULA
 		$Codigo = $_REQUEST['id'];
 
-			$records = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE (Estado = 1 OR Estado = 2) AND Codigo = :Codigo ');
+			$records = $databaseConnection->prepare('SELECT *  FROM peliculas INNER JOIN generos on peliculas.genero = generos.codigo
+													INNER JOIN paises on peliculas.pais = paises.codigo WHERE (Estado = 1 OR Estado = 2) AND peliculas.Codigo = :Codigo ');
 			$records->bindParam(':Codigo', $Codigo);
 			$records->execute();
 			$results = $records->fetch(PDO::FETCH_ASSOC);
-			//SACAR LOS DETALLES DEL GENERO
-			$records1 = $databaseConnection->prepare('SELECT Nombre FROM  generos WHERE Codigo = :Cod');
-			$records1->bindParam(':Cod', $results['Genero']);
-			$records1->execute();
-			$results1 = $records1->fetch(PDO::FETCH_ASSOC);
-			// SACAR LOS DETALLES DEL PAIS
-			$records2 = $databaseConnection->prepare('SELECT Pais FROM  paises WHERE Codigo = :Cod');
-			$records2->bindParam(':Cod', $results['Pais']);
-			$records2->execute();
-			$results2 = $records2->fetch(PDO::FETCH_ASSOC);			
+			
 ?> 
 <!doctype html>
 <html lang="es">
@@ -76,9 +68,9 @@ include('funciones.php');
 						</tr>
 								<tr>	
 									<!-- GÉNERO -->
-									<td >'.$results1['Nombre'].'</td>
+									<td >'.$results['Nombre'].'</td>
 									<!-- NACIONALIDAD -->
-									<td>'.$results2['Pais'].'</td>
+									<td>'.$results['Pais'].'</td>
 								</tr>
 						<tr>
 							<th><span class="letralogo">Duración</span></th>
