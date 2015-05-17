@@ -1,19 +1,19 @@
 <?php
 
 	require_once('admin/Connections/conexion.php');
-		//DEFINO EL FILTRO DEL CAMPO ESTADO
+		//DEFINO EL FILTRO DEL CAMPO ESTADO | 2 = Proximos estrenos
 		$estado = 2;
-			$records = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado');
+			$records = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado ORDER BY `Fecha estreno` ASC');
 			$records->bindParam(':estado', $estado);
 			$records->execute();
 			//$results = $records->fetch(PDO::FETCH_ASSOC);
 						
-			$records2 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado');
+			$records2 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado ORDER BY `Fecha estreno` ASC');
 			$records2->bindParam(':estado', $estado);
 			$records2->execute();
 			//$results = $records2->fetch(PDO::FETCH_ASSOC);	
 			
-			$records3 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado');
+			$records3 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado ORDER BY `Fecha estreno` ASC');
 			$records3->bindParam(':estado', $estado);
 			$records3->execute();
 			//$results = $records3->fetch(PDO::FETCH_ASSOC);	

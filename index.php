@@ -1,14 +1,14 @@
 <?php
 
 	require_once('admin/Connections/conexion.php');
-		//DEFINO EL FILTRO DEL CAMPO ESTADO
+		//DEFINO EL FILTRO DEL CAMPO ESTADO | 1 = En cartelera
 		$estado = 1;
-			$records = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado');
+			$records = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
 			$records->bindParam(':estado', $estado);
 			$records->execute();
 			//$results = $records->fetch(PDO::FETCH_ASSOC);
 						
-			$records2 = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado');
+			$records2 = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
 			$records2->bindParam(':estado', $estado);
 			$records2->execute();
 			//$results = $records2->fetch(PDO::FETCH_ASSOC);	

@@ -3,7 +3,7 @@ header('Content-Type: application/pdf');
 //header('Content-Disposition: attachment; filename="Entrada.pdf"');
 
 require('fpdf.php');
-//require('catalogo_mysql.php');
+require_once('../Connections/conexion.php');
 
 class PDF extends FPDF
 {
@@ -113,6 +113,8 @@ class PDF extends FPDF
 	}
 }	
 
+
+
 //Constructor del documento: Landscape , MiliMetros, Formato/Tamaño (70mm x 50 mm)
 $pdf=new PDF('L','mm',array(70,50));
 $pdf->SetAuthor('Miguel Angel Peris Iborra');
@@ -123,10 +125,38 @@ $pdf->SetTitle('Entrada');
 //Como se muestra el documento: nivel de zoom y a dos columnas
 $pdf->SetDisplayMode(50,'two'); 
 
+//REQUEST + CONSULTAS
+	//$_POST['numsesion']
+	//$_POST['sala'];
+	$hoy = date("Y-m-d");     
+	$hoy = '2015-05-08'; 
+	$hoy_ticket = date("d-m-y");
+	$hoy_ticket = '08-05-15';
+	
+	
+	
 
+			$records = $databaseConnection->prepare('SELECT * FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion 
+													INNER JOIN salas on pases.NumSala = salas.NumSala INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo 
+													WHERE (Estado = 1 OR Estado = 2) AND DiaPase = :fechahoy AND pases.NumSala = :numsala AND pases.NumSesion = :numses ORDER BY Titulo ASC, HoraIni ASC');
+			$records->bindParam(':fechahoy', $hoy);
+			$records->bindParam(':numsala', $_POST['sala']);
+			$records->bindParam(':numses', $_POST['numsesion']);
+			$records->execute();
+			$results = $records->fetch(PDO::FETCH_ASSOC);
+			
+			
+//UPDATE DE DISPONIBILIDAD DE LA SALA 
+			$cantidad = $_POST[cantidad] + $results[Vendidas] ;
+			$records1 = $databaseConnection->prepare('UPDATE pases SET Vendidas=:cantidad WHERE  NumSala=:numsala AND NumSesion=:numses ');
+			$records1->bindParam(':cantidad', $cantidad);
+			$records1->bindParam(':numsala', $_POST['sala']);
+			$records1->bindParam(':numses', $_POST['numsesion']);
+			$records1->execute();
+/***************************************************/	
 
-global $code;
-for ($i = 1; $i <= 2; $i++) {
+//global $code;
+for ($i = 1; $i <= $_POST[cantidad]*2; $i++) {
 	  
 	/***************************************************/
 	// 				LOGO + BARCODE						
@@ -144,7 +174,7 @@ for ($i = 1; $i <= 2; $i++) {
 	$pdf->SetFont('Courier','B',12);
 	//TITULO + SEPARADOR
 	//$pdf->Cell(0,5,utf8_decode('LOS VENGADORES LA ERA DE ULTRON'),0,1,'C');
-	$pdf->MultiCell(0,4,utf8_decode('LOS VENGADORES: LA ERA DE ULTRÓN'),0,'C');
+	$pdf->MultiCell(0,4,utf8_decode(strtoupper($results[Titulo])),0,'C');
 	$pdf->Ln(-2);
 	$pdf->SetFont('Courier','B',14);
 	$pdf->Cell(0,2, html_entity_decode("___________________"),0,1,'C'); 
@@ -164,11 +194,11 @@ for ($i = 1; $i <= 2; $i++) {
 	$pdf->SetFont('Courier','B',13);
 	$y= $pdf->GetY();
 	$pdf->SetXY(10,$y);
-	$pdf->Cell(5,4,utf8_decode('00'),0,1,'C');
+	$pdf->Cell(5,4,utf8_decode($results[NumSala]),0,1,'C');
 	$pdf->SetXY(25,$y);
-	$pdf->Cell(7,4,utf8_decode('00:00'),0,1,'C');
+	$pdf->Cell(7,4,utf8_decode(date("H:i", strtotime($results[HoraIni]))),0,1,'C');
 	$pdf->SetXY(45,$y);
-	$pdf->Cell(9,4,utf8_decode('25-05-15'),0,1,'C');
+	$pdf->Cell(9,4,utf8_decode($hoy_ticket),0,1,'C');
 	$pdf->Ln(0);
 	/************************************************************************/
 }
@@ -178,6 +208,5 @@ for ($i = 1; $i <= 2; $i++) {
 $pdf->Output("Entrada.pdf",'I');
 
 
-//mysql_free_result($result);
-//mysql_close($link);
+
 ?>

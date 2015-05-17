@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL ^ E_NOTICE);
 session_start();
 function randomText($length) {
     $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";

@@ -22,24 +22,15 @@ if($_SESSION['usermaestro'] == 2)
 //CONEXION A BDD Y CONSULTAS 
 require_once('Connections/conexion.php');
 
-$hoy = date("Y-m-d");       
-			$records = $databaseConnection->prepare('SELECT * FROM  pases WHERE DiaPase = :fechahoy');
+$hoy = date("Y-m-d");     
+$hoy = '2015-05-08';  
+												
+			$records = $databaseConnection->prepare('SELECT * FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion 
+													INNER JOIN salas on pases.NumSala = salas.NumSala INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo 
+													WHERE (Estado = 1 OR Estado = 2) AND DiaPase = :fechahoy ORDER BY Titulo ASC, HoraIni ASC');
 			$records->bindParam(':fechahoy', $hoy);
 			$records->execute();
 			//$results = $records->fetch(PDO::FETCH_ASSOC);
-
-	//echo $hoy;	
-		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
-			print("
-			NUMSALA -> $results[NumSala] <br/>
-			NumSesion -> $results[NumSesion] <br/>
-			DiaPase -> $results[DiaPase] <br/>
-			Vendidas -> $results[Vendidas] <br/>
-			CodigoPeli -> $results[CodigoPeli] <br/>
-			
-			
-		");
-		}
 
  ?>
 <!doctype html>
@@ -64,6 +55,24 @@ if ($_SESSION['usermaestro'] == '2'){
 	menu_tq(); //llamo menu + clock + welcome	
 }
 ?>
+<script>
+//REFRESCAR PAGINA + UPDATE DE CONTADOR DE VENTAS
+ function disponibilidad(){
+	/* $.ajax({
+        type: "POST",
+        url: "update_vendidas.php",
+        //data: { name: $("select[name='players']").val()},
+        success: window.location.reload(true),        
+		error:  alert( "No se ha podido modificar el aforo disponible"  ),
+        
+       });	*/		
+	   setTimeout(function(){
+                         window.location.reload(true);
+                    }, 1500);          
+	 
+ }
+
+</script>
 <div id="content">		
 		<div id="marco">
 			<table class="taquilla" cellpadding="0" cellspacing="0"> 
@@ -72,81 +81,106 @@ if ($_SESSION['usermaestro'] == '2'){
 					<th>Titulo</th>
 					<th>Calificación</th>
 					<th>Sesión</th>
+					<th>Duración</th>
 					<th>Sala</th>
 					<th></th>
 				</tr>
+<?php
+	while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
+		$cartel = $results[Cartel];
+		$titulo = strtoupper($results[Titulo]);
+		$calif = $results[Calificacion];
+		$sesion = date("H:i", strtotime($results[HoraIni]));
+		$duracion = $results[Duracion];
+		$numsala = $results[NumSala];
+		$disp = (intval($results[Butacas]) - intval($results[Vendidas]));
+		$aforototal = $results[Butacas];
+		
+		
+		
+		print('
 					<tr>
 						<td>
-							<img style="margin-top:3px;" src="../files/losvengadores.jpg"   alt="Cartel película" width="91" height="131" border="0" />
+							<img style="margin-top:3px;" src="../imagenes/pelis/'.$cartel.'"   alt="Cartel '.$titulo.'" width="91" height="131" border="0" />
 						</td>
 						<td class="titulo">
-							<strong>LOS VENGADORES: LA ERA DE ULTRÓN</strong> 
+							<strong>'.$titulo.'</strong> 
 						</td>
 						<td>
-							TP
+							'.$calif.'
 						</td>
 						<td>
-							22:00
+							'.$sesion.'
 						</td>
 						<td>
-							SALA 1
+							'.$duracion.' min
 						</td>
 						<td>
-							<center>
-							<div class="button-holder"><a class="button" href="entradas/entradas.php" target="_blank">Generar entrada</a>
-								<select>
-									 <option selected value="1">1</option>
-									 <option value="2">2</option>
-									 <option value="3">3</option>
-									 <option value="4">4</option>
-									 <option value="5">5</option>
-								</select>
+							<strong>SALA <br/><span style="color:red;">'.$numsala.'</span> </strong>
+						</td>
+						<td>
+						');						
+							
+			if($disp > 0 ){
+								print ('
+						<center>
+							<div class="button-holder">
+							<form  method="post" target="_blank" action="entradas/entradas.php">								
+								<input class="button" type="submit"  value="Generar entrada"  onclick="javascript:disponibilidad();"/>
+									<select name="cantidad">
+										<option selected value="1">1</option>
+									');
+									if($disp >= 5){
+										for ($i = 2;  $i <= 5; $i++){
+											print('
+												<option  value="'.$i.'">'.$i.'</option>
+											');											
+										}										
+									}else{
+										for ($i = 2;  $i <= $disp; $i++){
+											print('
+												<option  value="'.$i.'">'.$i.'</option>
+											');									
+										}
+									}									
+										 
+									
+							print('		 
+									</select>
+									<input type="hidden" name="numsesion" value="'.$results[NumSesion].'"/> 
+									<input type="hidden" name="sala" value="'.$results[NumSala].'"/> 
+								</form>
 							</div>	
 							<hr style="width:85%"/>
-							<p><strong>AFORO DISPONIBLE:</strong> 10 / 50</p>
-							<progress  value="10" max="50"></progress>
-							</center>
-						</td>				
-					</tr>
-				<tr>
-				</tr>	
-				<!-- SEPARADOR --> 
-									<tr>
-						<td>
-							<img style="margin-top:3px;" src="../files/sweethome.jpg"   alt="Cartel película" width="91" height="131" border="0" />
-						</td>
-						<td class="titulo">
-							<strong>SWEET HOME</strong> 
-						</td>
-						<td>
-							+18
-						</td>
-						<td>
-							20:00
-						</td>
-						<td>
-							Sala 2
-						</td>
-						<td>
-							<center>
-							<div class="button-holder"><a class="button" href="">Generar entrada</a>
-								<select>
-									 <option selected value="1">1</option>
-									 <option value="2">2</option>
-									 <option value="3">3</option>
-									 <option value="4">4</option>
-									 <option value="5">5</option>
-								</select>
-							</div>	
-							<hr style="width:85%"/>
-							<p><strong>AFORO DISPONIBLE:</strong> 45 / 50</p>
-							<progress  value="45" max="50"></progress>
-							</center>
-						</td>				
-					</tr>
+							<p><strong>AFORO DISPONIBLE:</strong> '.$disp.' / '.$aforototal.'</p>
+							<progress  value="'.$disp.'" max="'.$aforototal.'"></progress>
+							</center>						
 								
-				
-			
+								');
+				/* NO QUEDAN LOCALIDADES */
+							}else{
+								print('
+								<center>							
+									<p><strong>AFORO DISPONIBLE:</strong> <span style="color:red;font-weight:bold;">'.$disp.'</span> / '.$aforototal.'</p>
+									<progress  value="'.$disp.'" max="'.$aforototal.'"></progress>
+								</center>				
+								
+								');
+							}
+								
+								
+							print('	
+
+						</td>				
+					</tr>	
+				<!-- SEPARADOR --> 			
+		
+		');
+		
+	
+	
+	}
+?>				
 			</table>
 		</div>
 </div>	

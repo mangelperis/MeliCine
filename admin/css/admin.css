@@ -343,7 +343,7 @@ color:#0099C5;
 	margin-left:-30px;
 }
 
-a.button{
+input.button{
 	background-color:#f6a7b3;
 	
 	background-image:-webkit-linear-gradient(top, #E57502, #E57502);
@@ -362,7 +362,7 @@ a.button{
 	cursor:pointer;
 }
 
-a.button:hover{
+input.button:hover{
 	opacity:0.9;
 }
 

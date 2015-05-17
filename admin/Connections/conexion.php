@@ -1,4 +1,6 @@
 <?php
+//Para servidores en modo STRICT y eliminar los errores NOTICE()
+error_reporting(E_ALL ^ E_NOTICE);
 
 	//DB configuration Constants
 	define('_HOST_NAME_', 'localhost');

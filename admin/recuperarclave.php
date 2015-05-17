@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php
+session_start();
+error_reporting(E_ALL ^ E_NOTICE);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,18 +32,18 @@ if ($recuperar == 1)
 			$sql-> bindParam(':email', $email);
 			$sql-> execute();
 			$results = $sql->fetch(PDO::FETCH_ASSOC);
-			if(count($results) > 0){
+			if(count($results) > 1){
 				include_once("Connections/configmail.php");
 				//GENERAR UN NUEVO PASSWORD, se almacena en la variable $pw y se lo envío al usuario
 				require_once('password_generator.php');					
 								
 					//CONTENIDO DEL MAIL
 					$subject="Recuperacion de los datos de acceso";
-					$body="Se ha enviado este mensaje porque se ha realizado una peticion de recuperacion de clave en la web www.melicine.com.<br/>
+					$body="Se ha enviado este mensaje porque se ha realizado una <strong>peticion de recuperacion de clave</strong> en la web www.melicine.com.<br/><br/>
 					Se ha generado una nueva contraseña:<br/>
 					<strong>Usuario:</strong> ".$results['usuario']."<br><strong>Nueva Clave:</strong> " .$pw;//DECRYPT PASSWORD ANTES!! <- NO SE PUEDE!
 				// 1ºParametro es el destinatario , deberia ser $result['email']
-				if(EnviarEmail('mangel@idsplus.net', $result['email'], $subject, $body)){
+				if(EnviarEmail('mapi17fs@gmail.com', $result['email'], $subject, $body)){
 					//ENVIO CORRECTO
 					print('
 						<p>&nbsp;</p><p>&nbsp;</p>

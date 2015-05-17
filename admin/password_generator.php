@@ -1,6 +1,8 @@
 <?php
 //GENERADOR DE PASSWORD PARA RECUPERAR CLAVE , RESULTADO EN $pw
 //http://www.catchstudio.com/labs/password-generator/
+error_reporting(E_ALL ^ E_NOTICE);
+
 $alpha = "abcdefghijklmnopqrstuvwxyz";
 $alpha_upper = strtoupper($alpha);
 $numeric = "0123456789";

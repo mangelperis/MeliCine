@@ -1,4 +1,5 @@
 <?php
+
 //creamos la sesion
 if (!isset($_SESSION)) { 
   session_start();
@@ -47,7 +48,27 @@ if ($_SESSION['usermaestro'] == '2'){
 			<center><canvas id="chart-area" width="300" height="300"/></center>				
 		</div>		
 </div>	
+<?php
+// VALORES PARA LOS GRAFICOS 
+	require_once('Connections/conexion.php');
+		$hoy = date("Y-m-d");     
+		$hoy = '2015-05-08';  	
+	
+			$records = $databaseConnection->prepare('SELECT Titulo, SUM(Vendidas) as Vendidas, DiaPase FROM pases INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo GROUP BY Titulo HAVING DiaPase = :hoy');
+			$records->bindParam(':hoy',$hoy);
+			$records->execute();
+			//$results = $records->fetch(PDO::FETCH_ASSOC);
+?>
 <script>
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
 		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 		var lineChartData = {
 			labels : ["LUNES","MARTES","MIERCOLES","JUEVES","VIERNES","SABADO","DOMINGO"],
@@ -68,37 +89,19 @@ if ($_SESSION['usermaestro'] == '2'){
 		}
 
 	
-		var pieData = [
-				{
-					value: 300,
-					color:"#F7464A",
-					highlight: "#FF5A5E",
-					label: "Red"
-				},
-				{
-					value: 50,
-					color: "#46BFBD",
-					highlight: "#5AD3D1",
-					label: "Green"
-				},
-				{
-					value: 100,
-					color: "#FDB45C",
-					highlight: "#FFC870",
-					label: "Yellow"
-				},
-				{
-					value: 40,
-					color: "#949FB1",
-					highlight: "#A8B3C5",
-					label: "Grey"
-				},
-				{
-					value: 120,
-					color: "#4D5360",
-					highlight: "#616774",
-					label: "Dark Grey"
-				}
+		var pieData = [		
+<?php
+		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
+			echo ('
+					{				
+						value:'.json_encode($results[Vendidas]).',
+						color: getRandomColor(),
+						highlight: getRandomColor(),
+						label:"'.substr($results[Titulo],0,26).'"
+					},
+					');				
+		}	
+?>
 			];
 			window.onload = function(){
 				var ctx = document.getElementById("chart-area").getContext("2d");
