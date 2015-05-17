@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-05-2015 a las 13:26:45
+-- Tiempo de generación: 18-05-2015 a las 01:39:03
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -372,9 +372,11 @@ CREATE TABLE IF NOT EXISTS `pases` (
 --
 
 INSERT INTO `pases` (`NumSala`, `NumSesion`, `DiaPase`, `Vendidas`, `CodigoPeli`, `NumPase`) VALUES
-(1, 3, '2015-05-08', 0, 3, NULL),
-(1, 4, '2015-05-25', 0, 3, NULL),
-(2, 3, '2015-05-25', 0, 1, NULL);
+(1, 3, '2015-05-08', 51, 3, NULL),
+(1, 4, '2015-05-08', 0, 3, NULL),
+(1, 5, '2015-05-09', 90, 3, NULL),
+(2, 3, '2015-05-08', 1, 1, NULL),
+(4, 10, '2015-05-08', 2, 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -493,7 +495,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`ID`, `usuario`, `nombre`, `password`, `email`, `usermaestro`) VALUES
 (1, 'Administrador', 'Administrador', '$1$K3/.LL2.$nxhV2tvrHTttkRLfabvqA/', 'administrador@melicine.com', 1),
-(2, 'pepito', 'Pepito taquillañ', '$1$wO5.3N..$h0M1nXaHMJAul3kbo8k5A0', 'pepito@melicine.com', 2);
+(2, 'pepito', 'Pepito taquillañ', '$1$Uz/.N8..$BIvF1J2QV3/gLVyksssh00', 'pepito@melicine.com', 2);
 
 --
 -- Restricciones para tablas volcadas
