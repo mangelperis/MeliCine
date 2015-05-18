@@ -42,9 +42,9 @@ if ($_SESSION['usermaestro'] == '2'){
 ?>
 <div id="content">		
 		<div id="marco">
-			<h3>Resumen de ventas de entradas a la semana</h3>
+			<h3>Entradas vendidas por sesión hoy</h3>
 			<canvas id="canvas" width="400" height="100"></canvas>
-			<h3>Entradas generadas por película hoy</h3>
+			<h3>Entradas vendidas por película hoy</h3>
 			<center><canvas id="chart-area" width="300" height="300"/></center>				
 		</div>		
 </div>	
@@ -52,9 +52,14 @@ if ($_SESSION['usermaestro'] == '2'){
 // VALORES PARA LOS GRAFICOS 
 	require_once('Connections/conexion.php');
 		$hoy = date("Y-m-d");     
-		$hoy = '2015-05-08';  	
-	
-			$records = $databaseConnection->prepare('SELECT Titulo, SUM(Vendidas) as Vendidas, DiaPase FROM pases INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo GROUP BY Titulo HAVING DiaPase = :hoy');
+		$hoy = '2015-05-08';  
+	//POR SESION 
+			$records1 = $databaseConnection->prepare('SELECT HoraIni, SUM(Vendidas) as Vendidas, sesiones.NumSesion as NS FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion WHERE DiaPase = :hoy GROUP BY HoraIni ORDER BY HoraIni ASC');
+			$records1->bindParam(':hoy',$hoy);
+			$records1->execute();
+		
+	// POR PELICULA
+			$records = $databaseConnection->prepare('SELECT Titulo, SUM(Vendidas) as Vendidas FROM pases INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo WHERE DiaPase = :hoy GROUP BY Titulo ');
 			$records->bindParam(':hoy',$hoy);
 			$records->execute();
 			//$results = $records->fetch(PDO::FETCH_ASSOC);
@@ -71,8 +76,20 @@ function getRandomColor() {
 
 		var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
 		var lineChartData = {
-			labels : ["LUNES","MARTES","MIERCOLES","JUEVES","VIERNES","SABADO","DOMINGO"],
-			datasets : [
+		
+		// ETIQUETAS + STRING DE DATOS (VALORES)
+		<?php
+		print ('labels : [');
+		$string_data = 'data : [';
+			while( $results1 = $records1->fetch(PDO::FETCH_ASSOC) ){
+				echo ('"'.date("H:i", strtotime($results1[HoraIni])).' ",');	
+				$string_data .= $results1[Vendidas].',';
+			}
+		print('],');
+		$string_data .= ']';
+		?>			
+		/*****************/
+						datasets : [
 				
 				{
 					label: "Entradas vendidas",
@@ -83,8 +100,11 @@ function getRandomColor() {
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(151,187,205,1)",
 					
-					data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+					<?php print $string_data; ?>
+					
 				}
+			
+	
 			]
 		}
 
