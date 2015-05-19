@@ -202,7 +202,7 @@ if ($_SESSION['usermaestro'] == '2'){
 <div id="content">		
 	<div id="marco">
 <!-- CARTELERA -->
-		<h3> <img src="../imagenes/la_cartelera.png" width="147" height="30" alt=" " /><hr/></h3>
+		<h3> <img src="../imagenes/la_cartelera.png" width="147" height="30" alt="LA CARTELERA" /><hr/></h3>
 	<form name="cartelera" id="cartelera"  method="post" action="cartelera.php">
 		<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
 			<tr>
@@ -360,7 +360,7 @@ if ($_SESSION['usermaestro'] == '2'){
 	</form>	
 <!-- FIN Proximamente -->
 <!-- PROXIMAMENTE -->		
-		<h3><hr/><img src="../imagenes/taquilla.png" width="100" height="25" alt="PRÓXIMAMENTE" /><hr/></h3>
+		<h3><hr/><img src="../imagenes/taquilla.png" width="100" height="25" alt="TAQUILLA" /><hr/></h3>
 			<form name="proximamente" id="proximamente"  method="post" action="cartelera.php">
 				<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
 			<tr>

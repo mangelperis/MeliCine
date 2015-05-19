@@ -342,6 +342,28 @@ color:#0099C5;
 	width:auto;
 	margin-left:-30px;
 }
+a.button{
+	background-color:#f6a7b3;
+	
+	background-image:-webkit-linear-gradient(top, #E57502, #E57502);
+	background-image:-moz-linear-gradient(top, #E57502, #E57502);
+	background-image:linear-gradient(top, #f6a7b3, #f0a3af);
+
+	border:1px solid #000;
+	border-radius:2px;
+
+	box-shadow:0 2px 2px #ccc;
+
+	color:#fff;
+	text-decoration: none !important;
+	padding:5px 5px;
+	display:inline-block;
+	cursor:pointer;
+}
+
+a.button:hover{
+	opacity:0.9;
+}
 
 input.button{
 	background-color:#f6a7b3;

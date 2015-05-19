@@ -21,123 +21,42 @@ if($_SESSION['usermaestro'] == 2)
 //CONEXION A BDD Y CONSULTAS 
 require_once('Connections/conexion.php');
 
-
-//ENVIOS FORM SEGÚN QUE BOTON PULSAS + QUERYS SQL
-//DESPUBLICAR DE CARTELERA
-if(isset($_POST['desp_cartelera'])){
-	if (is_array($_POST['CodigoPeli'])) {
-			$selected = '';
-			$num_pelis = count($_POST['CodigoPeli']);
-			$current = 0;
-			foreach ($_POST['CodigoPeli'] as $key => $value) {
-				if ($current != $num_pelis-1){
-					//$selected .= $value.', ';
-					$records = $databaseConnection->prepare('UPDATE peliculas SET Estado=0 WHERE Codigo = :codigo');
-					$records->bindParam(':codigo', $value);
-					$records->execute();
-				}else{
-					//$selected .= $value.'.';
-					$records = $databaseConnection->prepare('UPDATE peliculas SET Estado=0 WHERE Codigo = :codigo');
-					$records->bindParam(':codigo', $value);
-					$records->execute();
-				}
-				$current++;
-			}
-		}
-		else {
-			echo "<script type='text/javascript'>alert('Debes seleccionar al menos una pelicula');</script>";
-		}		
-}
-
-
-//AÑADIR A CARTELERA SEGUN EL TITULO BUSCADO
-if(isset($_POST['añadir_cartelera'])){
-		//ACCIONES
-			$records = $databaseConnection->prepare('UPDATE peliculas SET Estado=1 WHERE Titulo = :titulo');
-			$records->bindParam(':titulo', $_POST['typeahead_añadir_cartelera']);
-			$records->execute();		
-	}
-
-//AÑADIR A PROXIMAMENTE SEGUN EL TITULO BUSCADO
-if(isset($_POST['añadir_proximamente'])){
-		//ACCIONES
-			$records = $databaseConnection->prepare('UPDATE peliculas SET Estado=2 WHERE Titulo = :titulo');
-			$records->bindParam(':titulo', $_POST['typeahead_añadir_proximamente']);
-			$records->execute();		
-	}
-//DESPUBLICAR DE PASES
-if(isset($_POST['desp_pases'])){
-	if (is_array($_POST['NumPase'])) {
-			$selected = '';
-			$num_pelis = count($_POST['NumPase']);
-			$current = 0;
-			foreach ($_POST['NumPase'] as $key => $value) {
-				if ($current != $num_pelis-1){
-					$records = $databaseConnection->prepare('DELETE FROM pases WHERE NumPase = :pase');
-					$records->bindParam(':pase', $value);
-					$records->execute();
-				}else{
-					$records = $databaseConnection->prepare('DELETE FROM pases WHERE NumPase = :pase');
-					$records->bindParam(':pase', $value);
-					$records->execute();
-				}
-				$current++;
-			}
-		}
-		else {
-			echo "<script type='text/javascript'>alert('Debes seleccionar al menos un pase');</script>";
-		}		
-}
-//TRUNCATE TABLA PASES (VACIAR TABLA)
-if(isset($_POST['truncate'])){
-	
-			$records = $databaseConnection->prepare('TRUNCATE pases');			
-			$records->execute();
-}	
-//AÑADIR A TAQUILLA CON BUSCADOR
-if(isset($_POST['añadir_taquilla']) ){
-	if($_POST['typeahead_añadir_taquilla_titulo'] == ''){
-		echo "titulo vacio";
-		
-	}else {
-		
-		if($_POST['typeahead_añadir_taquilla_sala'] == ''){
-			echo "sala empty";
-		
-		}else {
-		
-			if ($_POST['typeahead_añadir_taquilla_sesion'] == ''){	
-				echo "falta sesion";
+if(isset($_POST['añadir_peli'])){
+	$nocartel = 'no_disponible.jpg';
+			$records = $databaseConnection->prepare('INSERT INTO peliculas (Codigo, Titulo, Genero, Pais, Duracion, Director, Reparto, Sinopsis, Calificacion, Trailer, Distribuidora, Estado, Cartel, `Fecha estreno`) 
+									VALUES (NULL, :titulo, :genero, :pais, :duracion, :director, :reparto, :sinopsis, :calificacion, :trailer, :distribuidora, :estado, :cartel, :fecha)');
+			$records->bindParam(':titulo', $_POST['titulo']);
+			$records->bindParam(':genero', $_POST['genero']);
+			$records->bindParam(':pais', $_POST['pais']);
+			$records->bindParam(':duracion', $_POST['duracion']);
+			$records->bindParam(':director', $_POST['director']);
+			$records->bindParam(':reparto', $_POST['reparto']);
+			$records->bindParam(':sinopsis', $_POST['sinopsis']);
+			$records->bindParam(':calificacion', $_POST['calificacion']);
+			$records->bindParam(':trailer', $_POST['trailer']);
+			$records->bindParam(':distribuidora', $_POST['distribuidora']);
+			$records->bindParam(':estado', $_POST['estado']);
+			if($_POST['cartel'] == ''){
+				$records->bindParam(':cartel', $nocartel);				
 			}else{
-					//ACCIONES (LOS CAMPOS NO ESTAN VACIOS)
-					//CONSULTA PARA SACAR EL CODIGO DE LA PELICULA (POR TITULO)
-					$records = $databaseConnection->prepare('SELECT Codigo FROM peliculas WHERE Titulo = :titulo ');
-					$records->bindParam(':titulo', $_POST['typeahead_añadir_taquilla_titulo']);
-					$records->execute();
-					$results = $records->fetch(PDO::FETCH_ASSOC);
-					//CONSULTA PARA SACAR NUMSESION DE LA SESION (POR HORAINI)
-					$records1 = $databaseConnection->prepare('SELECT NumSesion FROM sesiones WHERE HoraIni = :hora ');
-					$records1->bindParam(':hora', $_POST['typeahead_añadir_taquilla_sesion']);
-					$records1->execute();
-					$results1 = $records1->fetch(PDO::FETCH_ASSOC);
-					
-					//CONSULTA DE INSERCION					
-					try{
-						$records = $databaseConnection->prepare('INSERT INTO pases (NumPase,NumSala, NumSesion, DiaPase, Vendidas, CodigoPeli) VALUES (NULL, :numsala, :numsesion, "2015-05-26", 0,:codigo);');
-						$records->bindParam(':numsala', $_POST['typeahead_añadir_taquilla_sala']);
-						$records->bindParam(':numsesion', $results1['NumSesion']);
-						$records->bindParam(':codigo', $results['Codigo']);
-						$records->execute();
-					}catch (MySQLException $e) {
-						// other mysql exception (not duplicate key entry)
-						$e->getMessage();
-					}
-		
+				$records->bindParam(':cartel', $_POST['cartel']);
 			}
-		}
-	}	
+			$records->bindParam(':fecha', $_POST['fecha']);
+			$records->execute();
+			
 	
+	echo "<script type='text/javascript'>alert('Pelicula añadida');</script>";
 }
+if(isset($_POST['modificar_peli'])){
+	
+	
+	echo "<script type='text/javascript'>alert('Pelicula modificada');</script>";
+}
+if(isset($_POST['eliminar_peli'])){
+	echo "<script type='text/javascript'>alert('Pelicula eliminada');</script>";
+}
+
+
  ?>
 <!doctype html>
 <html lang="es">
@@ -146,7 +65,7 @@ if(isset($_POST['añadir_taquilla']) ){
 require('meta_es_admin.php');
 ?>
 
-<title>MeliCine | Panel de administración | Cartelera</title>
+<title>MeliCine | Panel de administración | Gestion BDD</title>
 <meta name=keywords content=""/>
 <meta name=description content=""/>
 <!-- JavaScript Includes CLOCK-->
@@ -175,16 +94,7 @@ require('meta_es_admin.php');
 		});
 	});
 		</script>
-				<!-- SESION  -->
-			<script>
-			$(document).ready(function(){
-			$('input.typeahead_sesion').typeahead({
-				name: 'typeahead_sesion',
-				remote:'search.php?hora=%QUERY',
-				limit : 10
-			});
-		});
-			</script>
+		
 	
 </head>   
 <body class="admin">
@@ -200,272 +110,128 @@ if ($_SESSION['usermaestro'] == '2'){
 ?>
 <div id="content">		
 	<div id="marco">
-<!-- CARTELERA -->
-		<h3> <img src="../imagenes/la_cartelera.png" width="147" height="30" alt=" " /><hr/></h3>
-	<form name="cartelera" id="cartelera"  method="post" action="cartelera.php">
-		<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
-			<tr>
+<!-- OPCIONES -->
+		<h3><hr/><img src="../imagenes/gestion.png" width="147" height="30" alt="GESTION BDD" /><hr/></h3>
+		<form  method="post" action="gestionbdd.php" >
+			<p style="text-align:center;"> Selecciona la acción deseada: <br/>
+			
+			<input type="submit" name='añadir'  class="button" value="Añadir " />
+			<input type="submit" name='modificar'  class="button" value="Modificar" />
+			<input type="submit" name='eliminar'  class="button" value="Eliminar" />
+			</p>
+		</form>	
+		<br/>
 <?php
-		$estado = 1;
-			$records = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
-			$records->bindParam(':estado', $estado);
-			$records->execute();
-			$cuenta = $records->rowCount();
+//DISPLAY SEGUN CLICK DE ACCION
+//AÑADIR 
+if(isset($_POST['añadir'])){
+					$records = $databaseConnection->prepare('SELECT * FROM generos');					
+					$records->execute();
+					$records1 = $databaseConnection->prepare('SELECT * FROM paises');					
+					$records1->execute();
 					
-			$records2 = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
-			$records2->bindParam(':estado', $estado);
-			$records2->execute();
-
-		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td width="104" height="146" align="center">
-				<a href="../pelicula.php?id='.$results['Codigo'].'" target="_blank">
-				');
-				if(is_file('../imagenes/pelis/'.$results['Cartel'])){				
-					print('	<img src="../imagenes/pelis/'.$results['Cartel'].'" alt="Cartel '.$results['Titulo'].'" width="91" height="131" border="0" /> ');
-				}else{
-					print('	<img src="../imagenes/pelis/no_disponible.jpg" alt="Cartel no disponible" width="91" height="131" border="0" /> ');
-				}								
-			print('	
-				</a>
-			  </td>
+	
+		//ACCIONES (HTML)
+print('	
+	<h3>Añadir película </h3>
+	<br/>
+	<form action="gestionbdd.php" method="post" style="margin-left:55px;">
+			Titulo:	<input type="text" name="titulo" value="" style="width:370px;margin-right:30px;"  > 
+			Género: <select name="genero">
+		');
+		while($results = $records->fetch(PDO::FETCH_ASSOC)){
 			
-			');
+			print('<option  value="'.$results['Codigo'].'">'.$results['Nombre'].'</option>' );
+		}
 						
-		}
-?>			 
-			</tr>
-			<tr>
-<?php	
-		while( $results = $records2->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td height="60" align="center" valign="top" >
-				<div style="margin-right:10px"><strong>
-				'.strtoupper($results['Titulo']).'</strong>
-					<br/>
-					<input type="checkbox"  value="'.$results['Codigo'].'" name="CodigoPeli[]" /> 
-				</div>
-			</td>
+						
+print('						
+					</select>
+					<br/><br/>
+			Pais:   <select name="pais" style="margin-right:40px;">
+		');
+		while($results1 = $records1->fetch(PDO::FETCH_ASSOC)){
 			
-			');			
+			print('<option  value="'.$results1['Codigo'].'">'.$results1['Pais'].'</option> ');
 		}
-?>						  
-			</tr>
-
-		</table><br/>
 		
-		<center><input type="submit" name='desp_cartelera'  class="button" value="Despublicar selecc." />&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset"  class="button" value="Borrar" /></center>
+print('						
+					</select>
+			Duración:<input type="text" name="duracion" value="" style="width:50px;"  >&nbsp;min
+					<br/><br/>
+			Director:<input type="text" name="director" value="" style="width:300px;margin-right:40px;"   >
+			Calificación:<select name="calificacion">
+							<option selected value="Pendiente">Pendiente</option>
+							<option  value="+7">+7</option>
+							<option  value="+12">+12</option>
+							<option  value="+16">+16</option>
+							<option  value="+18">+18</option>
+							<option  value="TP">TP</option>
+					</select>
+					<br/><br/>
+			Reparto: <textarea  name="reparto" value="" style="width:600px;"  > 	</textarea>	
+					<br/><br/>
+			Sinopsis: <textarea  name="sinopsis" value="" style="width:600px;"  > 	</textarea>	
+					<br/><br/>
+			Trailer:<input type="text" name="trailer" value="" style="width:300px;margin-right:10px;"  >
+			Distribuidora:<input type="text" name="distribuidora" value="" style="width:200px;"  >
+					<br/><br/>
+			Cartel:<input type="text" name="cartel" value="" style="width:300px;margin-right:10px;"  >
+			Fecha Estreno:<input type="text" name="fecha"> (YYYY-MM-DD)
+					<br/><br/>
+			Estado:	<select name="estado">
+						<option selected value="0">0 - Despublicado</option>
+						<option  value="1">1 - Cartelera</option>
+						<option  value="2">2 - Proximamente</option>
+						
+					</select>
+					<span style="float:right;">
+					<input type="submit" name="añadir_peli" value="Añadir" class="button">
+					<input type="reset" value="Borrar"  class="button">
+					</span>	
 	</form>
 	
-	<br/>
-	
-	<form name="añadir" id="añadir"  method="post" action="cartelera.php" >
-		<p style="text-align:center;">
-		<input style="width:300px;text-align:left !important;" type="text" name="typeahead_añadir_cartelera" class="typeahead" autocomplete="off" spellcheck="false" placeholder="Buscar por Titulo ...">
-	    <img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name='añadir_cartelera'  class="button" value="Añadir a Cartelera" />
-		</p>
-	</form>		
-<!-- FIN CARTELERA -->	
-<!-- PROXIMAMENTE -->		
-		<h3><hr/><img src="../imagenes/proximamente.png" width="147" height="30" alt="PRÓXIMAMENTE" /><hr/></h3>
-			<form name="proximamente" id="proximamente"  method="post" action="cartelera.php">
-				<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
-			<tr>
-<?php
-		$estado = 2;
-			$records = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado ORDER BY `Fecha estreno` ASC');
-			$records->bindParam(':estado', $estado);
-			$records->execute();
-									
-			$records2 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado ORDER BY `Fecha estreno` ASC');
-			$records2->bindParam(':estado', $estado);
-			$records2->execute();
-						
-			$records3 = $databaseConnection->prepare('SELECT * FROM  peliculas WHERE estado = :estado ORDER BY `Fecha estreno` ASC');
-			$records3->bindParam(':estado', $estado);
-			$records3->execute();
 		
-		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td width="104" height="146" align="center">
-				<a href="../pelicula.php?id='.$results['Codigo'].'" target="_blank">
-				');
-				if(is_file('../imagenes/pelis/'.$results['Cartel'])){				
-					print('	<img src="../imagenes/pelis/'.$results['Cartel'].'" alt="Cartel '.$results['Titulo'].'" width="91" height="131" border="0" /> ');
-				}else{
-					print('	<img src="../imagenes/pelis/no_disponible.jpg" alt="Cartel no disponible" width="91" height="131" border="0" /> ');
-				}								
-			print('	
-				</a>
-			  </td>
+<!-- FIN AÑADIR -->		
+		');
+	}
+	
+//MODIFICAR
+if(isset($_POST['modificar'])){
+		//ACCIONES
+			echo "<h3>Buscar película a modificar </h3><br/>";
 			
+			print('
+					<form   method="post" action="gestionbdd_modificar.php" >
+						<p style="text-align:center;">
+						<input style="width:300px;text-align:left !important;" type="text" name="typeahead_titulo_pelicula" class="typeahead" autocomplete="off" spellcheck="false" placeholder="Buscar por Titulo ...">
+						<img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" name="editar_peli"  class="button" value="Editar Info" />
+						</p>
+					</form>				
 			');
-						
-		}
-?>			 
-			</tr>
-			<tr>
-<?php
+	}
 	
-		while( $results = $records3->fetch(PDO::FETCH_ASSOC) ){
-				/***** CONVERTIR FECHAS A ESPAÑOL ***********/
-					$dias = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
-					$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-					$fecha = strtotime($results['Fecha estreno']); 
-					 
-				/******************************************/	
+//ELIMINAR
+if(isset($_POST['eliminar'])){
+		//ACCIONES
+			echo "<h3>Buscar película a eliminar </h3><br/>";
+			
 			print('
-			  <td height="60" align="center" valign="top" >
-				<div style="margin-right:0px;font-style:italic;font-size:13px;">
-				'.date('d',$fecha)." de ".$meses[date('n',$fecha)-1].'
-				</div>
-			</td>
-			
-			');			
-		}
-?>	
-			</tr>
-			<tr>
-<?php
-		
-		while( $results = $records2->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td height="60" align="center" valign="top" >
-				<div style="margin-right:10px"><strong>
-				'.strtoupper($results['Titulo']).'</strong>
-				<br/>
-				<input type="checkbox"  value="'.$results['Codigo'].'" name="CodigoPeli[]" /> 
-				</div>
-			</td>
-			
-			');			
-		}
-?>						  
-			</tr>
-		
-		</table><br/>
-		<center><input type="submit" name='desp_cartelera'  class="button" value="Despublicar selecc." />&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset"  class="button" value="Borrar" /></center>
-
-		</form>
-		<br/>
-	
-	<form name="añadir" id="añadir"  method="post" action="cartelera.php" >
-		<p style="text-align:center;">
-		<input style="width:300px;text-align:left !important;" type="text" name="typeahead_añadir_proximamente" class="typeahead" autocomplete="off" spellcheck="false" placeholder="Buscar por Titulo ...">
-	    <img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name='añadir_proximamente'  class="button" value="Añadir a Proximamente" />
-		</p>
-	</form>	
-<!-- FIN Proximamente -->
-<!-- PROXIMAMENTE -->		
-		<h3><hr/><img src="../imagenes/taquilla.png" width="100" height="25" alt="PRÓXIMAMENTE" /><hr/></h3>
-			<form name="proximamente" id="proximamente"  method="post" action="cartelera.php">
-				<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
-			<tr>
-<?php
-$hoy = date("Y-m-d");     
-$hoy = '2015-05-26';  
-												
-			$records = $databaseConnection->prepare('SELECT * FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion 
-													INNER JOIN salas on pases.NumSala = salas.NumSala INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo 
-													WHERE (Estado = 1 OR Estado = 2) AND DiaPase = :fechahoy ORDER BY Titulo ASC, HoraIni ASC');
-			$records->bindParam(':fechahoy', $hoy);
-			$records->execute();
-			
-			$records2 = $databaseConnection->prepare('SELECT * FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion 
-													INNER JOIN salas on pases.NumSala = salas.NumSala INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo 
-													WHERE (Estado = 1 OR Estado = 2) AND DiaPase = :fechahoy ORDER BY Titulo ASC, HoraIni ASC');
-			$records2->bindParam(':fechahoy', $hoy);
-			$records2->execute();
-			
-			$records3 = $databaseConnection->prepare('SELECT * FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion 
-													INNER JOIN salas on pases.NumSala = salas.NumSala INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo 
-													WHERE (Estado = 1 OR Estado = 2) AND DiaPase = :fechahoy ORDER BY Titulo ASC, HoraIni ASC');
-			$records3->bindParam(':fechahoy', $hoy);
-			$records3->execute();
-		
-		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td width="104" height="146" align="center">
-				<a href="../pelicula.php?id='.$results['Codigo'].'" target="_blank">
-				');
-				if(is_file('../imagenes/pelis/'.$results['Cartel'])){				
-					print('	<img src="../imagenes/pelis/'.$results['Cartel'].'" alt="Cartel '.$results['Titulo'].'" width="91" height="131" border="0" /> ');
-				}else{
-					print('	<img src="../imagenes/pelis/no_disponible.jpg" alt="Cartel no disponible" width="91" height="131" border="0" /> ');
-				}								
-			print('	
-				</a>
-			  </td>
-			
+					<form   method="post" action="gestionbdd_modificar.php" >
+						<p style="text-align:center;">
+						<input style="width:300px;text-align:left !important;" type="text" name="typeahead_titulo_pelicula" class="typeahead" autocomplete="off" spellcheck="false" placeholder="Buscar por Titulo ...">
+						<img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="submit" name="eliminar_peli"  class="button" value="Eliminar Peli" />
+						</p>
+					</form>				
 			');
-						
-		}
-?>			 
-			</tr>
-			<tr>
+	}
 
-<?php
-		
-		while( $results = $records2->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td height="60" align="center" valign="top" >
-				<div style="margin-right:10px"><strong>
-				'.strtoupper($results['Titulo']).'</strong>
-				 
-				</div>
-			</td>
-			
-			');			
-		}
-?>						  
-			</tr>
-			<tr>
 
-<?php
-		
-		while( $results = $records3->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td height="60" align="center" valign="top" >
-				<div style="margin-right:10px"><strong>
-				SALA <span style="color:red;">'.strtoupper($results['NumSala']).'</span> | '.date("H:i", strtotime($results[HoraIni])).'</strong>
-				<br/>
-				<input type="checkbox"  value="'.$results['NumPase'].'" name="NumPase[]" /> 							
-				</div>
-			</td>
-			
-			');			
-		}
-?>						  
-			</tr>
-		
-		</table><br/>
-		<center><input type="submit" name='desp_pases'  class="button" value="ELIMINAR selecc." />&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset"  class="button" value="Borrar" />&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" name='truncate'  class="button" value="TRUNCATE (Borrar todo)" /></center>
+?>		
 
-		</form>
-		<br/>
-	
-	<form name="pases" id="pases"  method="post" action="cartelera.php" >
-		<p style="text-align:center;">
-		<input style="width:300px;text-align:left !important;" type="text" name="typeahead_añadir_taquilla_titulo" class="typeahead" autocomplete="off" spellcheck="false" placeholder="Buscar por Titulo ...">
-	    <img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
 		
-		</p>
-		<p style="text-align:center;">
-		<input style="width:300px;text-align:left !important;" type="text" name="typeahead_añadir_taquilla_sala" class="typeahead_sala" autocomplete="off" spellcheck="false" placeholder="Sala ...">
-	    <img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
-		
-		</p>
-		<p style="text-align:center;">
-		<input style="width:300px;text-align:left !important;" type="text" name="typeahead_añadir_taquilla_sesion" class="typeahead_sesion" autocomplete="off" spellcheck="false" placeholder="Sesión ...">
-	    <img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
-		
-		</p>
-		<center><input type="submit" name='añadir_taquilla'  class="button" value="Añadir a Taquilla" /></center>
-	</form>	
-<!-- FIN Proximamente -->
-
 
 			
 	</div>
