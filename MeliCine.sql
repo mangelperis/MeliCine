@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2015 a las 01:39:03
+-- Tiempo de generación: 19-05-2015 a las 18:47:49
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -78,6 +78,33 @@ INSERT INTO `generos` (`Codigo`, `Nombre`, `Descripcion`) VALUES
 (35, 'Cine independiente', ''),
 (36, 'Mockbuster', ''),
 (37, 'Metraje encontrado (género)', '');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial_pases_`
+--
+
+CREATE TABLE IF NOT EXISTS `historial_pases_` (
+  `NumPase` int(11) NOT NULL AUTO_INCREMENT,
+  `NumSala` smallint(2) NOT NULL,
+  `NumSesion` int(11) NOT NULL,
+  `DiaPase` date NOT NULL,
+  `Vendidas` int(3) unsigned NOT NULL DEFAULT '0',
+  `CodigoPeli` smallint(5) unsigned NOT NULL,
+  PRIMARY KEY (`NumPase`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `historial_pases_`
+--
+
+INSERT INTO `historial_pases_` (`NumPase`, `NumSala`, `NumSesion`, `DiaPase`, `Vendidas`, `CodigoPeli`) VALUES
+(1, 1, 3, '2015-05-08', 52, 3),
+(2, 1, 4, '2015-05-08', 0, 3),
+(3, 1, 5, '2015-05-09', 90, 3),
+(4, 2, 3, '2015-05-08', 1, 1),
+(5, 4, 10, '2015-05-08', 2, 5);
 
 -- --------------------------------------------------------
 
@@ -356,27 +383,56 @@ INSERT INTO `paises` (`Codigo`, `Pais`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `pases` (
+  `NumPase` int(11) NOT NULL AUTO_INCREMENT,
   `NumSala` smallint(2) NOT NULL,
   `NumSesion` int(11) NOT NULL,
   `DiaPase` date NOT NULL,
   `Vendidas` int(3) unsigned NOT NULL DEFAULT '0',
   `CodigoPeli` smallint(5) unsigned NOT NULL,
-  `NumPase` int(11) DEFAULT NULL,
+  PRIMARY KEY (`NumPase`,`NumSala`,`NumSesion`),
+  KEY `fk_codigo` (`CodigoPeli`),
+  KEY `fk_numses` (`NumSesion`),
+  KEY `fk_numsala1` (`NumSala`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `pases`
+--
+
+INSERT INTO `pases` (`NumPase`, `NumSala`, `NumSesion`, `DiaPase`, `Vendidas`, `CodigoPeli`) VALUES
+(1, 2, 4, '2015-05-26', 1, 4),
+(2, 2, 8, '2015-05-26', 0, 3),
+(3, 3, 10, '2015-05-26', 0, 1),
+(4, 3, 1, '2015-05-26', 0, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `pases_bck`
+--
+
+CREATE TABLE IF NOT EXISTS `pases_bck` (
+  `NumSala` smallint(2) NOT NULL,
+  `NumSesion` int(11) NOT NULL,
+  `DiaPase` date NOT NULL,
+  `Vendidas` int(3) unsigned NOT NULL DEFAULT '0',
+  `CodigoPeli` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`NumSala`,`NumSesion`),
   KEY `fk_numsesion` (`NumSesion`),
   KEY `codpeli` (`CodigoPeli`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `pases`
+-- Volcado de datos para la tabla `pases_bck`
 --
 
-INSERT INTO `pases` (`NumSala`, `NumSesion`, `DiaPase`, `Vendidas`, `CodigoPeli`, `NumPase`) VALUES
-(1, 3, '2015-05-08', 51, 3, NULL),
-(1, 4, '2015-05-08', 0, 3, NULL),
-(1, 5, '2015-05-09', 90, 3, NULL),
-(2, 3, '2015-05-08', 1, 1, NULL),
-(4, 10, '2015-05-08', 2, 5, NULL);
+INSERT INTO `pases_bck` (`NumSala`, `NumSesion`, `DiaPase`, `Vendidas`, `CodigoPeli`) VALUES
+(1, 6, '2015-05-08', 0, 9),
+(1, 10, '2015-05-08', 0, 7),
+(2, 4, '2015-05-08', 0, 9),
+(3, 6, '2015-05-08', 0, 3),
+(3, 7, '2015-05-08', 0, 10),
+(4, 8, '2015-05-08', 0, 10);
 
 -- --------------------------------------------------------
 
@@ -487,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `email` varchar(50) NOT NULL,
   `usermaestro` tinyint(1) NOT NULL DEFAULT '2',
   PRIMARY KEY (`ID`,`usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Usuarios ' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Usuarios ' AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -495,7 +551,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`ID`, `usuario`, `nombre`, `password`, `email`, `usermaestro`) VALUES
 (1, 'Administrador', 'Administrador', '$1$K3/.LL2.$nxhV2tvrHTttkRLfabvqA/', 'administrador@melicine.com', 1),
-(2, 'pepito', 'Pepito taquillañ', '$1$Uz/.N8..$BIvF1J2QV3/gLVyksssh00', 'pepito@melicine.com', 2);
+(2, 'pepito', 'Pepito taquillañ', '$1$Uz/.N8..$BIvF1J2QV3/gLVyksssh00', 'pepito@melicine.com', 2),
+(3, 'demo', 'demo', '$1$Ek/.7A..$HJQlqmoThEtis9sca5Cgj0', 'demo@melicine.com', 2);
 
 --
 -- Restricciones para tablas volcadas
@@ -505,9 +562,9 @@ INSERT INTO `usuarios` (`ID`, `usuario`, `nombre`, `password`, `email`, `usermae
 -- Filtros para la tabla `pases`
 --
 ALTER TABLE `pases`
-  ADD CONSTRAINT `fk_codigopei` FOREIGN KEY (`CodigoPeli`) REFERENCES `peliculas` (`Codigo`),
-  ADD CONSTRAINT `fk_numsala` FOREIGN KEY (`NumSala`) REFERENCES `salas` (`NumSala`),
-  ADD CONSTRAINT `fk_numsesion` FOREIGN KEY (`NumSesion`) REFERENCES `sesiones` (`NumSesion`);
+  ADD CONSTRAINT `fk_numsala1` FOREIGN KEY (`NumSala`) REFERENCES `salas` (`NumSala`),
+  ADD CONSTRAINT `fk_codigo` FOREIGN KEY (`CodigoPeli`) REFERENCES `peliculas` (`Codigo`),
+  ADD CONSTRAINT `fk_numses` FOREIGN KEY (`NumSesion`) REFERENCES `sesiones` (`NumSesion`);
 
 --
 -- Filtros para la tabla `peliculas`
