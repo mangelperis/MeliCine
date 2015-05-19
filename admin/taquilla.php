@@ -13,17 +13,17 @@ if(!isset($_SESSION['username']))
 }
 
 //VOY A SIMULAR QUE DENIEGO EL ACCESO AL GRUPO Taquilla a este archivo/*
-if($_SESSION['usermaestro'] == 2)
+/*if($_SESSION['usermaestro'] == 2)
 {
 	$_SESSION['session'] = '403' ;
 	header('Location: index.php'); 
 	exit();	
-}
+}*/
 //CONEXION A BDD Y CONSULTAS 
 require_once('Connections/conexion.php');
 
 $hoy = date("Y-m-d");     
-$hoy = '2015-05-08';  
+$hoy = '2015-05-26';  
 												
 			$records = $databaseConnection->prepare('SELECT * FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion 
 													INNER JOIN salas on pases.NumSala = salas.NumSala INNER JOIN peliculas on pases.CodigoPeli = peliculas.Codigo 
@@ -58,18 +58,9 @@ if ($_SESSION['usermaestro'] == '2'){
 <script>
 //REFRESCAR PAGINA + UPDATE DE CONTADOR DE VENTAS
  function disponibilidad(){
-	/* $.ajax({
-        type: "POST",
-        url: "update_vendidas.php",
-        //data: { name: $("select[name='players']").val()},
-        success: window.location.reload(true),        
-		error:  alert( "No se ha podido modificar el aforo disponible"  ),
-        
-       });	*/		
 	   setTimeout(function(){
                          window.location.reload(true);
-                    }, 1500);          
-	 
+                    }, 1500);  	 
  }
 
 </script>

@@ -52,7 +52,7 @@ if ($_SESSION['usermaestro'] == '2'){
 // VALORES PARA LOS GRAFICOS 
 	require_once('Connections/conexion.php');
 		$hoy = date("Y-m-d");     
-		$hoy = '2015-05-08';  
+		$hoy = '2015-05-26';  
 	//POR SESION 
 			$records1 = $databaseConnection->prepare('SELECT HoraIni, SUM(Vendidas) as Vendidas, sesiones.NumSesion as NS FROM pases INNER JOIN sesiones on pases.NumSesion = sesiones.NumSesion WHERE DiaPase = :hoy GROUP BY HoraIni ORDER BY HoraIni ASC');
 			$records1->bindParam(':hoy',$hoy);

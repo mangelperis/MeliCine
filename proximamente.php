@@ -37,9 +37,9 @@ require('meta_es.php');
 var firstbgcarousel=new bgCarousel({
 	wrapperid: 'mybgcarousel', //ID of blank DIV on page to house carousel
 	imagearray: [
-		['files/tomorrowland.jpg', '<div style="width:860; height:370, margin-top:0px"><a href="#"><img src="imagenes/otros/transp.gif"  class="noborde enlace"></a></div>'], //["image_path", "optional description"]
-		['files/pan.jpg', '<div style="width:860; height:370, margin-top:0px"><a href="#"><img src="imagenes/otros/transp.gif"  class="noborde enlace"></a></div>'],
-		['files/sanandreas.jpg', '<div style="width:860; height:370, margin-top:0px"><a href="#"><img src="imagenes/otros/transp.gif"  class="noborde enlace"></a></div>'] //<--no trailing comma after very last image element!
+		['imagenes/tomorrowland.jpg', '<div style="width:860; height:370, margin-top:0px"><a href="#"><img src="imagenes/otros/transp.gif"  class="noborde enlace"></a></div>'], //["image_path", "optional description"]
+		['imagenes/pan.jpg', '<div style="width:860; height:370, margin-top:0px"><a href="#"><img src="imagenes/otros/transp.gif"  class="noborde enlace"></a></div>'],
+		['imagenes/sanandreas.jpg', '<div style="width:860; height:370, margin-top:0px"><a href="#"><img src="imagenes/otros/transp.gif"  class="noborde enlace"></a></div>'] //<--no trailing comma after very last image element!
 	],
 	displaymode: {type:'auto', pause:3000, cycles:3, stoponclick:false, pauseonmouseover:true},
 	navbuttons: ['imagenes/otros/left_.png', 'imagenes/otros/right_.png', 'imagenes/otros/up.gif', 'imagenes/otros/down.gif'], // path to nav images

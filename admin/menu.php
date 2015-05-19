@@ -37,7 +37,7 @@ function menu(){
                         </a>
                     </li>
 					<li '.$id1.'>
-                        <a href="#">
+                        <a href="gestionbdd.php">
                             <span class="ca-icon">&#90;</span>
                             <div class="ca-content">
                                 <h2 class="ca-main">Gestionar BDD</h2>
@@ -55,7 +55,7 @@ function menu(){
                         </a>
                     </li>			
                     <li '.$id3.'>
-                        <a href="#">
+                        <a href="cartelera.php">
                             <span class="ca-icon">&#77;</span>
                             <div class="ca-content">
                                 <h2 class="ca-main">La Cartelera</h2>

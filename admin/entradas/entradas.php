@@ -129,9 +129,9 @@ $pdf->SetDisplayMode(50,'two');
 	//$_POST['numsesion']
 	//$_POST['sala'];
 	$hoy = date("Y-m-d");     
-	$hoy = '2015-05-08'; 
+	$hoy = '2015-05-26'; 
 	$hoy_ticket = date("d-m-y");
-	$hoy_ticket = '08-05-15';
+	$hoy_ticket = '26-05-15';
 	
 	
 	
