@@ -201,73 +201,6 @@ if ($_SESSION['usermaestro'] == '2'){
 
 <div id="content">		
 	<div id="marco">
-<!-- CARTELERA -->
-		<h3> <img src="../imagenes/la_cartelera.png" width="147" height="30" alt="LA CARTELERA" /><hr/></h3>
-	<form name="cartelera" id="cartelera"  method="post" action="cartelera.php">
-		<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
-			<tr>
-<?php
-		$estado = 1;
-			$records = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
-			$records->bindParam(':estado', $estado);
-			$records->execute();
-			$cuenta = $records->rowCount();
-					
-			$records2 = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
-			$records2->bindParam(':estado', $estado);
-			$records2->execute();
-
-		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td width="104" height="146" align="center">
-				<a href="../pelicula.php?id='.$results['Codigo'].'" target="_blank">
-				');
-				if(is_file('../imagenes/pelis/'.$results['Cartel'])){				
-					print('	<img src="../imagenes/pelis/'.$results['Cartel'].'" alt="Cartel '.$results['Titulo'].'" width="91" height="131" border="0" /> ');
-				}else{
-					print('	<img src="../imagenes/pelis/no_disponible.jpg" alt="Cartel no disponible" width="91" height="131" border="0" /> ');
-				}								
-			print('	
-				</a>
-			  </td>
-			
-			');
-						
-		}
-?>			 
-			</tr>
-			<tr>
-<?php	
-		while( $results = $records2->fetch(PDO::FETCH_ASSOC) ){
-			print('
-			  <td height="60" align="center" valign="top" >
-				<div style="margin-right:10px"><strong>
-				'.strtoupper($results['Titulo']).'</strong>
-					<br/>
-					<input type="checkbox"  value="'.$results['Codigo'].'" name="CodigoPeli[]" /> 
-				</div>
-			</td>
-			
-			');			
-		}
-?>						  
-			</tr>
-
-		</table><br/>
-		
-		<center><input type="submit" name='desp_cartelera'  class="button" value="Despublicar selecc." />&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset"  class="button" value="Borrar" /></center>
-	</form>
-	
-	<br/>
-	
-	<form name="añadir" id="añadir"  method="post" action="cartelera.php" >
-		<p style="text-align:center;">
-		<input style="width:300px;text-align:left !important;" type="text" name="typeahead_añadir_cartelera" class="typeahead" autocomplete="off" spellcheck="false" placeholder="Buscar por Titulo ...">
-	    <img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="submit" name='añadir_cartelera'  class="button" value="Añadir a Cartelera" />
-		</p>
-	</form>		
-<!-- FIN CARTELERA -->	
 <!-- PROXIMAMENTE -->		
 		<h3><hr/><img src="../imagenes/proximamente.png" width="147" height="30" alt="PRÓXIMAMENTE" /><hr/></h3>
 			<form name="proximamente" id="proximamente"  method="post" action="cartelera.php">
@@ -359,7 +292,74 @@ if ($_SESSION['usermaestro'] == '2'){
 		</p>
 	</form>	
 <!-- FIN Proximamente -->
-<!-- PROXIMAMENTE -->		
+<!-- CARTELERA -->
+		<h3> <img src="../imagenes/la_cartelera.png" width="147" height="30" alt="LA CARTELERA" /><hr/></h3>
+	<form name="cartelera" id="cartelera"  method="post" action="cartelera.php">
+		<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">
+			<tr>
+<?php
+		$estado = 1;
+			$records = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
+			$records->bindParam(':estado', $estado);
+			$records->execute();
+			$cuenta = $records->rowCount();
+					
+			$records2 = $databaseConnection->prepare('SELECT Codigo,Titulo,Cartel FROM  peliculas WHERE estado = :estado ORDER BY Titulo ASC');
+			$records2->bindParam(':estado', $estado);
+			$records2->execute();
+
+		while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
+			print('
+			  <td width="104" height="146" align="center">
+				<a href="../pelicula.php?id='.$results['Codigo'].'" target="_blank">
+				');
+				if(is_file('../imagenes/pelis/'.$results['Cartel'])){				
+					print('	<img src="../imagenes/pelis/'.$results['Cartel'].'" alt="Cartel '.$results['Titulo'].'" width="91" height="131" border="0" /> ');
+				}else{
+					print('	<img src="../imagenes/pelis/no_disponible.jpg" alt="Cartel no disponible" width="91" height="131" border="0" /> ');
+				}								
+			print('	
+				</a>
+			  </td>
+			
+			');
+						
+		}
+?>			 
+			</tr>
+			<tr>
+<?php	
+		while( $results = $records2->fetch(PDO::FETCH_ASSOC) ){
+			print('
+			  <td height="60" align="center" valign="top" >
+				<div style="margin-right:10px"><strong>
+				'.strtoupper($results['Titulo']).'</strong>
+					<br/>
+					<input type="checkbox"  value="'.$results['Codigo'].'" name="CodigoPeli[]" /> 
+				</div>
+			</td>
+			
+			');			
+		}
+?>						  
+			</tr>
+
+		</table><br/>
+		
+		<center><input type="submit" name='desp_cartelera'  class="button" value="Despublicar selecc." />&nbsp;&nbsp;&nbsp;&nbsp;<input type="reset"  class="button" value="Borrar" /></center>
+	</form>
+	
+	<br/>
+	
+	<form name="añadir" id="añadir"  method="post" action="cartelera.php" >
+		<p style="text-align:center;">
+		<input style="width:300px;text-align:left !important;" type="text" name="typeahead_añadir_cartelera" class="typeahead" autocomplete="off" spellcheck="false" placeholder="Buscar por Titulo ...">
+	    <img style="vertical-align:middle;" src="images/buscar.png" width="16" height="16" border="0" /> &nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="submit" name='añadir_cartelera'  class="button" value="Añadir a Cartelera" />
+		</p>
+	</form>		
+<!-- FIN CARTELERA -->	
+<!-- TAQUILLA -->		
 		<h3><hr/><img src="../imagenes/taquilla.png" width="100" height="25" alt="TAQUILLA" /><hr/></h3>
 			<form name="proximamente" id="proximamente"  method="post" action="cartelera.php">
 				<table width="720" border="0" cellspacing="0" cellpadding="0" class="pelis" style="margin-left:60px">

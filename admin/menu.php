@@ -46,7 +46,7 @@ function menu(){
                         </a>
                     </li>
 					<li '.$id2.'>
-                        <a href="#">
+                        <a href="informes.php">
                             <span class="ca-icon">&#179;</span>
                             <div class="ca-content">
                                 <h2 class="ca-main">Informes</h2>

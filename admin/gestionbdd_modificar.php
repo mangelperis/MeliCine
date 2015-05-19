@@ -29,7 +29,7 @@ require_once('Connections/conexion.php');
 require('meta_es_admin.php');
 ?>
 
-<title>MeliCine | Panel de administración | Modificar Pelicula</title>
+<title>MeliCine | Panel de administración | Gestion Pelicula</title>
 <meta name=keywords content=""/>
 <meta name=description content=""/>
 <!-- JavaScript Includes CLOCK-->

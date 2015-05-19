@@ -46,13 +46,4 @@ if (isset($_GET['hora'])){
 		}  
 	 echo json_encode($array);
 }
-
-
-
-
-
-
-
-
-
 ?>
