@@ -31,7 +31,7 @@ include('funciones.php');
 <div id="detalle">	
 	<div id="logo_cart" style="margin-left:10px; ">
 		<!-- TITULO PELI --> 
-		<p class="tit_detalle"><strong><?php echo strtoupper($results['Titulo']);?> </strong></p>
+		<p class="tit_detalle"><strong><?php echo mb_strtoupper($results[Titulo],'utf-8');?> </strong></p>
     </div>   
 	    <div id="menu1" style="margin-top:35px;margin-left:110px">
 <?php

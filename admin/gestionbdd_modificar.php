@@ -58,16 +58,17 @@ if ($_SESSION['usermaestro'] == '2'){
 //ELIMINAR
 if(isset($_POST['eliminar_peli'])){
 	
-	
-	$records4 = $databaseConnection->prepare('DELETE FROM peliculas WHERE Titulo = :titulo');	
-	$records4->bindParam(':titulo', $_POST['typeahead_titulo_pelicula']);
-	$records4->execute();
-	
-	print('<p><center>La Película <strong>'.$_POST['typeahead_titulo_pelicula'].'</strong>  se ha eliminado correctamente.</center></p>');
-	print('<center><a href="gestionbdd.php" class="button">Volver </a></center>');
-
-
-	
+	try{
+		$records4 = $databaseConnection->prepare('DELETE FROM peliculas WHERE Titulo = :titulo');	
+		$records4->bindParam(':titulo', $_POST['typeahead_titulo_pelicula']);
+		$records4->execute();
+		
+		print('<p><center>La Película <strong>'.$_POST['typeahead_titulo_pelicula'].'</strong>  se ha eliminado correctamente.</center></p>');
+		print('<center><a href="gestionbdd.php" class="button">Volver </a></center>');
+	}catch (MySQLException $e) {
+						// other mysql exception (not duplicate key entry)
+						$e->getMessage();
+						}	
 }
 //EDITAR
 if(isset($_POST['editar_peli'])){
@@ -87,6 +88,7 @@ print('
 	<h3>Modificar Pelicula </h3>
 	<br/>
 	<form action="gestionbdd.php" method="post" style="margin-left:55px;">
+			Codigo	<input type="text" name="codigo_peli" value="'.$results4['Codigo'].'" style="width:40px;" readonly><br/><br/>
 			Titulo:	<input type="text" name="titulo" value="'.$results4['Titulo'].'" style="width:370px;margin-right:30px;"  > 
 			Género: <select name="genero">
 		');

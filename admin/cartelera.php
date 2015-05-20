@@ -97,17 +97,17 @@ if(isset($_POST['truncate'])){
 //AÑADIR A TAQUILLA CON BUSCADOR
 if(isset($_POST['añadir_taquilla']) ){
 	if($_POST['typeahead_añadir_taquilla_titulo'] == ''){
-		echo "titulo vacio";
+		echo "<script type='text/javascript'>alert('Falta la pelicula');</script>";
 		
 	}else {
 		
 		if($_POST['typeahead_añadir_taquilla_sala'] == ''){
-			echo "sala empty";
+			echo "<script type='text/javascript'>alert('Falta la sala');</script>";
 		
 		}else {
 		
 			if ($_POST['typeahead_añadir_taquilla_sesion'] == ''){	
-				echo "falta sesion";
+				echo "<script type='text/javascript'>alert('Falta la sesion');</script>";
 			}else{
 					//ACCIONES (LOS CAMPOS NO ESTAN VACIOS)
 					//CONSULTA PARA SACAR EL CODIGO DE LA PELICULA (POR TITULO)
@@ -267,7 +267,7 @@ if ($_SESSION['usermaestro'] == '2'){
 			print('
 			  <td height="60" align="center" valign="top" >
 				<div style="margin-right:10px"><strong>
-				'.strtoupper($results['Titulo']).'</strong>
+				'.mb_strtoupper($results[Titulo],'utf-8').'</strong>
 				<br/>
 				<input type="checkbox"  value="'.$results['Codigo'].'" name="CodigoPeli[]" /> 
 				</div>
@@ -333,7 +333,7 @@ if ($_SESSION['usermaestro'] == '2'){
 			print('
 			  <td height="60" align="center" valign="top" >
 				<div style="margin-right:10px"><strong>
-				'.strtoupper($results['Titulo']).'</strong>
+				'.mb_strtoupper($results[Titulo],'utf-8').'</strong>
 					<br/>
 					<input type="checkbox"  value="'.$results['Codigo'].'" name="CodigoPeli[]" /> 
 				</div>
@@ -413,7 +413,7 @@ $hoy = '2015-05-26';
 			print('
 			  <td height="60" align="center" valign="top" >
 				<div style="margin-right:10px"><strong>
-				'.strtoupper($results['Titulo']).'</strong>
+				'.mb_strtoupper($results[Titulo],'utf-8').'</strong>
 				 
 				</div>
 			</td>

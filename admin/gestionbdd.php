@@ -22,7 +22,8 @@ if($_SESSION['usermaestro'] == 2)
 require_once('Connections/conexion.php');
 
 if(isset($_POST['añadir_peli'])){
-	$nocartel = 'no_disponible.jpg';
+	try{
+		$nocartel = 'no_disponible.jpg';
 			$records = $databaseConnection->prepare('INSERT INTO peliculas (Codigo, Titulo, Genero, Pais, Duracion, Director, Reparto, Sinopsis, Calificacion, Trailer, Distribuidora, Estado, Cartel, `Fecha estreno`) 
 									VALUES (NULL, :titulo, :genero, :pais, :duracion, :director, :reparto, :sinopsis, :calificacion, :trailer, :distribuidora, :estado, :cartel, :fecha)');
 			$records->bindParam(':titulo', $_POST['titulo']);
@@ -45,18 +46,43 @@ if(isset($_POST['añadir_peli'])){
 			$records->execute();
 			
 	
-	echo "<script type='text/javascript'>alert('Pelicula añadida');</script>";
+		echo "<script type='text/javascript'>alert('Pelicula añadida');</script>";
+	}catch (MySQLException $e) {
+						// other mysql exception (not duplicate key entry)
+						$e->getMessage();
+					}
 }
 if(isset($_POST['modificar_peli'])){
+		try{					
+			$records = $databaseConnection->prepare("UPDATE peliculas SET `Titulo`=:titulo, Genero=:genero, Pais=:pais, Duracion=:duracion, Director=:director, Reparto=:reparto, Sinopsis=:sinopsis, Calificacion=:calificacion, trailer=:trailer, Distribuidora=:distribuidora, Estado=:estado, Cartel=:cartel, `Fecha estreno`=:fecha WHERE Codigo=:codigo");
+			$records->bindParam(":codigo", $_POST['codigo_peli']);
+			$records->bindParam(":titulo", $_POST['titulo']);
+			$records->bindParam(':genero', $_POST['genero']);
+			$records->bindParam(':pais', $_POST['pais']);
+			$records->bindParam(':duracion', $_POST['duracion']);
+			$records->bindParam(':director', $_POST['director']);
+			$records->bindParam(':reparto', $_POST['reparto']);
+			$records->bindParam(':sinopsis', $_POST['sinopsis']);
+			$records->bindParam(':calificacion', $_POST['calificacion']);
+			$records->bindParam(':trailer', $_POST['trailer']);
+			$records->bindParam(':distribuidora', $_POST['distribuidora']);
+			$records->bindParam(':estado', $_POST['estado']);
+			if($_POST['cartel'] == ''){
+				$records->bindParam(':cartel', $nocartel);				
+			}else{
+				$records->bindParam(':cartel', $_POST['cartel']);
+			}
+			$records->bindParam(':fecha', $_POST['fecha']);
+			$records->execute();
+			
 	
-	
-	echo "<script type='text/javascript'>alert('Pelicula modificada');</script>";
-}
-if(isset($_POST['eliminar_peli'])){
-	echo "<script type='text/javascript'>alert('Pelicula eliminada');</script>";
-}
+		echo "<script type='text/javascript'>alert('Datos Modificados');</script>";
+	}catch (MySQLException $e) {
+						// other mysql exception (not duplicate key entry)
+						$e->getMessage();
+					}
 
-
+}
  ?>
 <!doctype html>
 <html lang="es">

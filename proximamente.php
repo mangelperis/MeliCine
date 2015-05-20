@@ -117,7 +117,7 @@ slider(); //llamo carousel
 			print('
 			  <td height="60" align="left" valign="top" >
 				<div style="margin-right:10px">
-				'.strtoupper($results['Titulo']).'
+				'.mb_strtoupper($results[Titulo],'utf-8').'
 				</div>
 			</td>
 			

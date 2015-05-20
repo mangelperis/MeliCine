@@ -174,7 +174,7 @@ for ($i = 1; $i <= $_POST[cantidad]*2; $i++) {
 	$pdf->SetFont('Courier','B',12);
 	//TITULO + SEPARADOR
 	//$pdf->Cell(0,5,utf8_decode('LOS VENGADORES LA ERA DE ULTRON'),0,1,'C');
-	$pdf->MultiCell(0,4,utf8_decode(strtoupper($results[Titulo])),0,'C');
+	$pdf->MultiCell(0,4,utf8_decode(mb_strtoupper($results[Titulo],'utf-8')),0,'C');
 	$pdf->Ln(-2);
 	$pdf->SetFont('Courier','B',14);
 	$pdf->Cell(0,2, html_entity_decode("___________________"),0,1,'C'); 

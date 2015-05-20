@@ -79,7 +79,7 @@ if ($_SESSION['usermaestro'] == '2'){
 <?php
 	while( $results = $records->fetch(PDO::FETCH_ASSOC) ){
 		$cartel = $results[Cartel];
-		$titulo = strtoupper($results[Titulo]);
+		$titulo = mb_strtoupper($results[Titulo],'utf-8');
 		$calif = $results[Calificacion];
 		$sesion = date("H:i", strtotime($results[HoraIni]));
 		$duracion = $results[Duracion];
