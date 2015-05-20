@@ -26,6 +26,11 @@ function menu(){
 	
 	print'   
 				<div class="menu">
+				<div id="welcome">
+					<div class="marco">
+						<p style="padding-top:15px;padding-left:10px;">Bienvenido, <br/><br/> <span>'.$_SESSION['username'].'</span> <img  src="images/logo.png"/></p>
+					</div>
+				</div>
                 <ul class="ca-menu">
 					<li '.$id0.'>
                         <a href="panel.php">
@@ -82,11 +87,7 @@ function menu(){
                         </a>
                     </li>                    
                 </ul>
-				<div id="welcome">
-					<div class="marco">
-						<p>Bienvenido, <br/><br/> <span>'.$_SESSION['username'].'</span> </p><img  src="images/logo.png"/>
-					</div>
-				</div>
+
 			<div id="clock" class="light">
 			<div class="display">
 				<div class="weekdays"></div>
@@ -125,6 +126,11 @@ function menu_tq(){
 	
 	print'   
 				<div class="menu">
+				<div id="welcome">
+					<div class="marco">
+						<p style="padding-top:15px;padding-left:10px;">Bienvenido, <br/><br/> <span>'.$_SESSION['username'].'</span> <img  src="images/logo.png"/></p>
+					</div>
+				</div>
                 <ul class="ca-menu">
 					<li '.$id0.'>
                         <a href="panel.php">
@@ -154,11 +160,7 @@ function menu_tq(){
                         </a>
                     </li>                    
                 </ul>
-				<div id="welcome">
-					<div class="marco">
-						<p>Bienvenido, <br/><br/> <span>'.$_SESSION['username'].'</span> </p><img  src="images/logo.png"/>
-					</div>
-				</div>
+
 			<div id="clock" class="light">
 			<div class="display">
 				<div class="weekdays"></div>
