@@ -4,13 +4,10 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 	//DB configuration Constants
 	define('_HOST_NAME_', 'localhost');
-	define('_USER_NAME_', 'melicine');
-	define('_DB_PASSWORD', 'melicine');
+	define('_USER_NAME_', '');
+	define('_DB_PASSWORD', '');
 	define('_DATABASE_NAME_', 'melicine');
-	//define('_HOST_NAME_', 'rdbms.strato.de');
-	//define('_USER_NAME_', 'U2126763');
-	//define('_DB_PASSWORD', 'melicine17');
-	//define('_DATABASE_NAME_', 'DB2126763');
+
 	
 	
 	//PDO Database Connection

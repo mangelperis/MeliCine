@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-05-2015 a las 01:50:02
+-- Tiempo de generación: 21-05-2015 a las 21:23:53
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -374,15 +374,15 @@ INSERT INTO `pases` (`NumPase`, `NumSala`, `NumSesion`, `DiaPase`, `Vendidas`, `
 (7, 1, 1, '2015-05-22', 150, 3),
 (8, 2, 3, '2015-05-22', 130, 3),
 (9, 1, 4, '2015-05-22', 110, 3),
-(10, 1, 6, '2015-05-26', 0, 25),
-(11, 1, 8, '2015-05-26', 0, 23),
-(12, 2, 5, '2015-05-26', 0, 27),
+(10, 1, 6, '2015-05-26', 1, 25),
+(11, 1, 8, '2015-05-26', 200, 23),
+(12, 2, 5, '2015-05-26', 1, 27),
 (13, 2, 8, '2015-05-26', 0, 27),
-(14, 1, 10, '2015-05-26', 0, 25),
+(14, 1, 10, '2015-05-26', 1, 25),
 (15, 2, 4, '2015-05-26', 0, 21),
-(16, 3, 7, '2015-05-26', 0, 3),
+(16, 3, 7, '2015-05-26', 1, 3),
 (17, 3, 4, '2015-05-26', 0, 3),
-(18, 4, 1, '2015-05-26', 0, 19),
+(18, 4, 1, '2015-05-26', 5, 19),
 (19, 4, 7, '2015-05-26', 0, 19);
 
 -- --------------------------------------------------------
@@ -419,7 +419,7 @@ CREATE TABLE IF NOT EXISTS `peliculas` (
 INSERT INTO `peliculas` (`Codigo`, `Titulo`, `Genero`, `Pais`, `Duracion`, `Director`, `Reparto`, `Sinopsis`, `Calificacion`, `Trailer`, `Distribuidora`, `Estado`, `Cartel`, `Fecha estreno`) VALUES
 (1, 'Sweet Home ', 5, 'ES', 80, 'Rafa Martínez', 'Ingrid García Jonsson, Bruno Sevilla, Oriol Tarrida, Eduardo Lloveras, Miguel Ángel Alarcón, Luka Peros, José María Blanco, Mariona Perrier', 'Una pareja decide pasar una noche romántica en un piso de un edificio semiabandonado al que se cuelan porque ella trabaja como asesora de inmuebles para el Ayuntamiento y tiene las llaves. Durante la velada descubren que unos encapuchados han asesinado al único inquilino que quedaba en el edificio… y ellos se convierten en su nuevo objetivo', '+16', 'https://youtu.be/08c1Qtakai4', ' Filmax ', 0, 'c76b430f13f697c7e8f6389e61fe2e85_Generic.jpg', NULL),
 (2, 'WALKING ON SUNSHINE ', 8, 'GB', 93, 'Max Giwa, Dania Pasquini', 'Greg Wise, Joelle Koissi, Leona Lewis, Annabel Scholey, Adrian Palmer, Hannah Arterton, Shane Salter, Val Monk, Terry Noble, Susan Fordham, Katy Brand', 'Maddie está decidida a organizar su boda con Raf, su prometido e invita a su hermana Taylor sin saber que ambos tuvieron una relación amorosa tiempo atrás.', 'TP', 'http://www.dailymotion.com/video/x2i67vm_walking-on-sunshine-trailer-espanol_shortfilms', 'IM Global', 0, '22f4ea961711bcef2dcb95904ab7d319_Generic.jpg', NULL),
-(3, 'Mad Max: Furia en la carretera', 19, 'AU', 120, 'George Miller', 'Tom Hardy, Nicholas Hoult, Charlize Theron, Rosie Huntington-Whiteley, Zoe Kravitz, Riley Keough, Nathan Jones, Josh Helman, Angus Sampson, Courtney Eaton, Hugh Keays-Byrne, Megan Gale, Richard Carter, Abbey Lee, Melissa Jaffer.', 'Del director George Miller, creador del género apocalíptico y maestro de la legendaria franquicia “Mad Max”, viene “Mad Max: Furia en la carretera”, una vuelta al mundo del guerrero de la carretera, Max Rockatansky.\r\n\r\nPerseguido por su turbulento pasado, Mad Max cree que la mejor forma de sobrevivir es ir solo por el mundo. Sin embargo, se ve arrastrado a formar parte de un grupo que huye a través del desierto en un War Rig conducido por una Emperatriz de élite: Furiosa.\r\n\r\nEscapan de una Ciudadela tiranizada por Immortan Joe, a quien han arrebatado algo irreemplazable. Enfurecido, el Señor de la Guerra moviliza a todas sus bandas y persigue implacablemente a los rebeldes en la Guerra de la Carretera de altas revoluciones.\r\n\r\n', 'Pendiente', 'https://youtu.be/GvsFoGIuRX4', 'Warner Bros', 1, '0506f7e99ccc886a2e2f977708283230_Generic.jpg', NULL),
+(3, 'Mad Max: Furia en la carretera', 6, 'US', 120, 'George Miller', '  Tom Hardy, Nicholas Hoult, Charlize Theron, Rosie Huntington-Whiteley, Zoe Kravitz, Riley Keough, Nathan Jones, Josh Helman, Angus Sampson, Courtney Eaton, Hugh Keays-Byrne, Megan Gale, Richard Carter, Abbey Lee, Melissa Jaffer.		', '  Del director George Miller, creador del género apocalíptico y maestro de la legendaria franquicia “Mad Max”, viene “Mad Max: Furia en la carretera”, una vuelta al mundo del guerrero de la carretera, Max Rockatansky.\r\n\r\nPerseguido por su turbulento pasado, Mad Max cree que la mejor forma de sobrevivir es ir solo por el mundo. Sin embargo, se ve arrastrado a formar parte de un grupo que huye a través del desierto en un War Rig conducido por una Emperatriz de élite: Furiosa.\r\n\r\nEscapan de una Ciudadela tiranizada por Immortan Joe, a quien han arrebatado algo irreemplazable. Enfurecido, el Señor de la Guerra moviliza a todas sus bandas y persigue implacablemente a los rebeldes en la Guerra de la Carretera de altas revoluciones.\r\n\r\n		', 'Pendiente', 'https://youtu.be/GvsFoGIuRX4', 'Warner Bros', 1, '0506f7e99ccc886a2e2f977708283230_Generic.jpg', '0000-00-00'),
 (4, 'Cautivos', 11, 'CA', 113, 'Atom Egoyan', 'Ryan Reynolds, Scott Speedman, Mireille Enos, Rosario Dawson, Bruce Greenwood, Kevin Durand, Alexia Fast, Peyton Kennedy, Brendan Gall, Aaron Poole, Jason Blicker', 'Ocho años después de la desaparición de Cassandra, algunos indicios perturbadores parecen indicar que aún está viva. La policía, sus padres y la propia Cassandra intentan esclarecer el misterio de su desaparición.', '+16', 'http://www.dailymotion.com/video/x2ng87k_cautivos-the-captive-trailer-espanol_shortfilms', 'entertainmentone', 0, 'b457c0017d1721e3652b5a778416af89_Generic.jpg', NULL),
 (5, 'Suite francesa ', 17, 'GB', 107, 'Saul Dibb', 'Michelle Williams, Matthias Schoenaerts, Kristin Scott Thomas, Sam Riley, Margot Robbie, Ruth Wilson, Alexandra Maria Lara, Tom Schilling, Eileen Atkins, Lambert Wilson', 'Historia ambientada en los años 40, durante la ocupación alemana del ejército nazi en Francia. Gira en torno a un romance que surge entre Lucille Angellier, una campesina francesa que tiene a su marido prisionero de guerra, y un soldado oficial alemán.', 'TP', 'https://youtu.be/7dTb9o_ugeY', 'entertainmentone', 0, 'f8bcd4658f70bd8a859b57787d226a7b_Generic.jpg', NULL),
 (6, 'Tomorrowland: El mundo del mañana', 19, 'US', 210, 'Brad Bird', 'George Clooney, Hugh Laurie, Britt Robertson, Raffey Cassidy, Judy Greer, Kathryn Hahn, Lochlyn Munro, Chris Bauer, Tim McGraw, Paul McGillion, Raiden Integra', 'Unidos por el mismo destino, un adolescente inteligente y optimista lleno de curiosidad científica y un antiguo niño prodigio inventor hastiado por las desilusiones se embarcan en una peligrosa misión para desenterrar los secretos de un enigmático lugar localizado en algún lugar del tiempo y el espacio conocido en la memoria colectiva como “Tomorrowland”.', 'TP', 'https://youtu.be/4sDYIehRoFc', 'Walt Disney Pictures', 2, '597849.jpg', '2015-05-29'),
@@ -469,7 +469,6 @@ INSERT INTO `salas` (`NumSala`, `Butacas`) VALUES
 CREATE TABLE IF NOT EXISTS `sesiones` (
   `NumSesion` int(11) NOT NULL AUTO_INCREMENT,
   `HoraIni` time NOT NULL,
-  `HoraFin` time DEFAULT NULL COMMENT 'Duracion Peli',
   PRIMARY KEY (`NumSesion`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
@@ -477,17 +476,17 @@ CREATE TABLE IF NOT EXISTS `sesiones` (
 -- Volcado de datos para la tabla `sesiones`
 --
 
-INSERT INTO `sesiones` (`NumSesion`, `HoraIni`, `HoraFin`) VALUES
-(1, '16:00:00', NULL),
-(2, '18:00:00', NULL),
-(3, '20:00:00', NULL),
-(4, '22:00:00', NULL),
-(5, '16:30:00', NULL),
-(6, '17:30:00', NULL),
-(7, '18:30:00', NULL),
-(8, '19:30:00', NULL),
-(9, '20:30:00', NULL),
-(10, '21:30:00', NULL);
+INSERT INTO `sesiones` (`NumSesion`, `HoraIni`) VALUES
+(1, '16:00:00'),
+(2, '18:00:00'),
+(3, '20:00:00'),
+(4, '22:00:00'),
+(5, '16:30:00'),
+(6, '17:30:00'),
+(7, '18:30:00'),
+(8, '19:30:00'),
+(9, '20:30:00'),
+(10, '21:30:00');
 
 -- --------------------------------------------------------
 
@@ -511,7 +510,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`ID`, `usuario`, `nombre`, `password`, `email`, `usermaestro`) VALUES
 (1, 'Administrador', 'Administrador', '$1$K3/.LL2.$nxhV2tvrHTttkRLfabvqA/', 'administrador@melicine.com', 1),
-(2, 'pepito', 'Pepito taquillañ', '$1$Th/.ga2.$i9sqzck464oxHSXwXjV4F/', 'pepito@melicine.com', 2),
+(2, 'pepito', 'Pepito taquilla', '$1$Th/.ga2.$i9sqzck464oxHSXwXjV4F/', 'pepito@melicine.com', 2),
 (3, 'demo', 'demo', '$1$Ek/.7A..$HJQlqmoThEtis9sca5Cgj0', 'demo@melicine.com', 2);
 
 --
@@ -522,8 +521,8 @@ INSERT INTO `usuarios` (`ID`, `usuario`, `nombre`, `password`, `email`, `usermae
 -- Filtros para la tabla `pases`
 --
 ALTER TABLE `pases`
-  ADD CONSTRAINT `fk_numsala1` FOREIGN KEY (`NumSala`) REFERENCES `salas` (`NumSala`),
   ADD CONSTRAINT `fk_codigo` FOREIGN KEY (`CodigoPeli`) REFERENCES `peliculas` (`Codigo`),
+  ADD CONSTRAINT `fk_numsala1` FOREIGN KEY (`NumSala`) REFERENCES `salas` (`NumSala`),
   ADD CONSTRAINT `fk_numses` FOREIGN KEY (`NumSesion`) REFERENCES `sesiones` (`NumSesion`);
 
 --

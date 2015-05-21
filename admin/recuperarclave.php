@@ -43,7 +43,7 @@ if ($recuperar == 1)
 					Se ha generado una nueva contraseña:<br/>
 					<strong>Usuario:</strong> ".$results['usuario']."<br><strong>Nueva Clave:</strong> " .$pw;//DECRYPT PASSWORD ANTES!! <- NO SE PUEDE!
 				// 1ºParametro es el destinatario , deberia ser $result['email']
-				if(EnviarEmail('mapi17fs@gmail.com', $result['email'], $subject, $body)){
+				if(EnviarEmail('tuemail@domain.com', $result['email'], $subject, $body)){
 					//ENVIO CORRECTO
 					print('
 						<p>&nbsp;</p><p>&nbsp;</p>
